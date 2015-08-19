@@ -13,7 +13,7 @@
 module sf {
     'use strict';
 
-    angular.module('sf', ['sf.core'])
+    angular.module('sf', ['sf.core', 'sf.security'])
         .config(Config)
         .config(RouterConfig)
         .run(RunBlock)

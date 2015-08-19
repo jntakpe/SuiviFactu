@@ -5,7 +5,7 @@ module sf {
 
     export class RouterConfig {
         /** @ngInject */
-        constructor($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) {
+        constructor($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) {
             $stateProvider
                 .state('home', {
                     url: '/',
