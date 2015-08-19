@@ -1,3 +1,5 @@
+/// <reference path="../../.tmp/typings/tsd.d.ts" />
+
 module sf {
     'use strict';
 
