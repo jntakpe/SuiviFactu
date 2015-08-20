@@ -51,7 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/api/**") //FIXME à supprimer dès que la sécurité fonctionne
                 .antMatchers("/oauth")
                 .antMatchers("/api-docs");
     }

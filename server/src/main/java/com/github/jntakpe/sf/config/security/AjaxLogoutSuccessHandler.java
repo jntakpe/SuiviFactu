@@ -29,6 +29,9 @@ public class AjaxLogoutSuccessHandler extends AbstractAuthenticationTargetUrlReq
     @Autowired
     private TokenStore tokenStore;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {
