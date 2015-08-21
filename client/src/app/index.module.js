@@ -4,19 +4,15 @@ import routerConfig from './index.route';
 import runBlock from './index.run';
 import coreModule from './components/core/core.module.js';
 import securityModule from './components/security/security.module.js';
-import MainController from './main/main.controller';
-import GithubContributorService from '../app/components/githubContributor/githubContributor.service';
-import WebDevTecService from '../app/components/webDevTec/webDevTec.service';
-import NavbarDirective from '../app/components/navbar/navbar.directive';
-import MalarkeyDirective from '../app/components/malarkey/malarkey.directive';
+import layoutModule from './components/layout/layout.module.js';
+import homeRoute from './home/home.route.js';
+import HomeController from './home/home.controller.js';
 
-angular.module('sf', [coreModule.name, securityModule.name])
+angular.module('sf', [coreModule.name, securityModule.name, layoutModule.name])
     .constant('toastr', toastr)
     .constant('moment', moment)
     .config(config)
     .config(routerConfig)
     .run(runBlock)
-    .service('githubContributor', GithubContributorService)
-    .service('webDevTec', WebDevTecService)
-    .controller('MainController', MainController)
-    .directive('acmeNavbar', () => new NavbarDirective());
+    .config(homeRoute)
+    .controller('HomeController', HomeController);
