@@ -3,9 +3,9 @@ export default function authExpiredInterceptor($q, $injector, localStorageServic
         responseError: function (response) {
             if (response.status === 401 && (response.data.error === 'invalid_token' || response.data.error === 'Unauthorized')) {
                 localStorageService.remove('token');
-                var PrincipalService = $injector.get('PrincipalService');
+                let PrincipalService = $injector.get('PrincipalService');
                 if (PrincipalService.isAuthenticated()) {
-                    var AuthService = $injector.get('AuthService');
+                    let AuthService = $injector.get('AuthService');
                     AuthService.authorize(true);
                 }
             }

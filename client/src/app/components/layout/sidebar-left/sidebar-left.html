@@ -1,0 +1,16 @@
+<md-toolbar class="sidebar-left-toolbar">
+    <div class="md-toolbar-tools" layout="row" layout-align="start center">
+        <div class="sidebar-left-logo">
+            <img src="assets/images/logo.png" alt="Suivi facturation" width="24px">
+        </div>
+
+        <h2 class="sidebar-left-title" flex>Suivi facturation</h2>
+
+        <md-button class="md-icon-button sidebar-left-icon" ng-click="sdl.toggleMenuLock()" aria-label="Open side menu">
+            <md-icon md-font-icon ng-class="sdl.isMenuLocked == true ? 'icon-unfold-less': 'icon-unfold-more'"></md-icon>
+        </md-button>
+
+    </div>
+</md-toolbar>
+
+<side-menu flex></side-menu>

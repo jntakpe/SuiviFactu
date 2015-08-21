@@ -15,7 +15,7 @@ export default class SignInCtrl {
             password: this.user.password
         }).then(() => this.AuthService.loginSuccess()).catch(() => {
             this.user = {};
-            toastr.error('Invalid credentials');
+            this.toastr.error('Invalid credentials');
         });
     }
 

@@ -30,15 +30,15 @@ export default class AuthService {
     }
 
     authorize(force) {
-        return this.PrincipalService.resolveIdentity(force).then((identity) => {
+        return this.PrincipalService.resolveIdentity(force).then(identity => {
                 let data = this.$rootScope.toState.data;
                 if (data && data.roles && data.roles.length > 0 && !this.PrincipalService.isInAnyRole(data.roles)) {
                     if (this.PrincipalService.isAuthenticated()) {
                         //FIXME add error msg
                         this.$state.go('main.home');
                     } else {
-                        $rootScope.returnToState = this.$rootScope.toState;
-                        $rootScope.returnToStateParams = this.$rootScope.toStateParams;
+                        this.$rootScope.returnToState = this.$rootScope.toState;
+                        this.$rootScope.returnToStateParams = this.$rootScope.toStateParams;
                         this.$state.go('login');
                     }
                 }

@@ -1,4 +1,5 @@
-import layoutRoute from './layout.route.js';
+import {layoutRoute, mainRoute} from './layout.route.js';
 
 export default angular.module('sf.layout', [])
-    .config(layoutRoute);
+    .config(layoutRoute)
+    .config(mainRoute);

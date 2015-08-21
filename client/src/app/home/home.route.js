@@ -1,6 +1,6 @@
 export default function homeRoute($stateProvider) {
     'ngInject';
-    $stateProvider.state('layout.home', {
+    $stateProvider.state('main.home', {
         url: '/',
         templateUrl: 'app/home/home.html',
         controller: 'HomeController',

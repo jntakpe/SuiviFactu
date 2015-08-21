@@ -1,4 +1,4 @@
-/* global malarkey:false, toastr:false, moment:false */
+/* global toastr:false, moment:false */
 import config from './index.config';
 import routerConfig from './index.route';
 import runBlock from './index.run';
