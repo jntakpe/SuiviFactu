@@ -12,5 +12,6 @@
 
     </div>
 </md-toolbar>
-
-<side-menu flex></side-menu>
+<md-content>
+    <side-menu-item ng-repeat="item in ::sdl.menu | orderBy:'priority'" item="::item"></side-menu-item>
+</md-content>

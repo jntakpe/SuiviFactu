@@ -1,0 +1,10 @@
+<md-button ng-click="toggleMenu()" class="md-raised md-primary side-menu-link">
+    <md-icon ng-if="::(item.icon !== undefined)" class="side-menu-icon">{{::item.icon}}</md-icon>
+    <span translate>{{::item.name}}</span>
+    <md-icon class="menu-toggle-icon" ng-class="{open: item.open}">icon-keyboard-arrow-right</md-icon>
+</md-button>
+<ul class="drop-down-list" ng-show="item.open">
+    <li ng-repeat="child in ::item.children | orderBy:'priority'">
+        <side-menu-item item="::child"></side-menu-item>
+    </li>
+</ul>
