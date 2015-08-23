@@ -22,6 +22,7 @@ export default class LayoutController {
     }
 
     toggleMenuLock() {
+        console.log('Togglleeee');
         this.isMenuLocked = !this.isMenuLocked;
         this.isMenuCollapsing = !this.isMenuLocked;
         if (this.isMenuCollapsing) {

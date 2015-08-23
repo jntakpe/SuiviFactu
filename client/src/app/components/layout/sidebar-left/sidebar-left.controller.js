@@ -48,4 +48,5 @@ export default class SidebarLeftController {
         this.menu = SideMenuService.getMenu();
         $scope.$on('$locationChangeSuccess', () => $timeout(() => $mdSidenav('left').close()));
     }
+
 }

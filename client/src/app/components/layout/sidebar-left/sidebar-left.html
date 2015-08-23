@@ -6,10 +6,9 @@
 
         <h2 class="sidebar-left-title" flex>Suivi facturation</h2>
 
-        <md-button class="md-icon-button sidebar-left-icon" ng-click="sdl.toggleMenuLock()" aria-label="Open side menu">
-            <md-icon md-font-icon ng-class="sdl.isMenuLocked == true ? 'icon-unfold-less': 'icon-unfold-more'"></md-icon>
+        <md-button class="md-icon-button sidebar-left-icon" ng-click="lyt.toggleMenuLock()" aria-label="Open side menu">
+            <md-icon class="material-icons">{{lyt.isMenuLocked == true ? 'unfold_less': 'unfold_more'}}</md-icon>
         </md-button>
-
     </div>
 </md-toolbar>
 <md-content>
