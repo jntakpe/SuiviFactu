@@ -3,7 +3,7 @@ import OAuth2Service from './services/oauth2.service.js';
 import PrincipalService from './services/principal.service.js';
 import authInterceptor from './interceptors/auth.interceptor.js';
 import authExpiredInterceptor from './interceptors/auth-expired.interceptor.js';
-import SignInCtrl from './signin/signin.controller.js';
+import SignInController from './signin/signin.controller.js';
 
 export default angular
     .module('sf.security', ['LocalStorageModule'])
@@ -21,7 +21,7 @@ function configState($stateProvider) {
     $stateProvider.state('login', {
         url: '/login?logout',
         templateUrl: 'app/components/security/signin/signin.html',
-        controller: SignInCtrl,
+        controller: SignInController,
         controllerAs: 'signin'
     });
 }

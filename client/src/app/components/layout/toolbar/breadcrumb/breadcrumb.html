@@ -1,0 +1,6 @@
+<span class="breadcrumb" ng-repeat="item in ::brd.infos.parents">
+    <a ui-sref="{{::item.name}}">{{::item.title}}</a> <md-icon class="material-icons">keyboard_arrow_right</md-icon>
+</span>
+<span class="breadcrumb active">
+    <span>{{::brd.infos.title}}</span>
+</span>

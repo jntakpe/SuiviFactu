@@ -1,9 +1,9 @@
-export default function sideMenuItemDirective($state) {
+export default function sideMenuItemDirective() {
     'ngInject';
 
     return {
         restrict: 'E',
-        scope: true,
+        scope: {},
         bindToController: {
             item: '='
         },

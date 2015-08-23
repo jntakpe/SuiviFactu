@@ -1,4 +1,4 @@
-export default class SignInCtrl {
+export default class SignInController {
 
     constructor($stateParams, toastr, AuthService) {
         'ngInject';

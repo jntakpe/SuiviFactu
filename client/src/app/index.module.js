@@ -7,7 +7,6 @@ import coreModule from './components/core/core.module.js';
 import securityModule from './components/security/security.module.js';
 import layoutModule from './components/layout/layout.module.js';
 import homeRoute from './home/home.route.js';
-import HomeController from './home/home.controller.js';
 
 angular.module('sf', [coreModule.name, securityModule.name, layoutModule.name])
     .constant('toastr', toastr)
@@ -16,5 +15,4 @@ angular.module('sf', [coreModule.name, securityModule.name, layoutModule.name])
     .config(config)
     .config(routerConfig)
     .config(themingConfig)
-    .config(homeRoute)
-    .controller('HomeController', HomeController);
+    .config(homeRoute);

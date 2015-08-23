@@ -4,6 +4,9 @@ export default function homeRoute($stateProvider) {
         url: '/',
         templateUrl: 'app/home/home.html',
         controller: 'HomeController',
-        controllerAs: 'home'
+        controllerAs: 'home',
+        data: {
+            title: 'Home'
+        }
     });
 }
