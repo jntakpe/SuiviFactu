@@ -1,9 +1,8 @@
 export default class LayoutController {
-    constructor($element, $timeout, $mdSidenav, $mdUtil, $state) {
+    constructor($element, $timeout, $mdUtil, $state) {
         'ngInject';
         this.$element = $element;
         this.$timeout = $timeout;
-        this.$mdSidenav = $mdSidenav;
         this.$mdUtil = $mdUtil;
         this.$state = $state;
 
@@ -22,7 +21,6 @@ export default class LayoutController {
     }
 
     toggleMenuLock() {
-        console.log('Togglleeee');
         this.isMenuLocked = !this.isMenuLocked;
         this.isMenuCollapsing = !this.isMenuLocked;
         if (this.isMenuCollapsing) {

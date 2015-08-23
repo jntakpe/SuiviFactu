@@ -1,5 +1,6 @@
 import LayoutController from './layout.controller.js';
 import SidebarLeftController from './sidebar-left/sidebar-left.controller.js';
+import ToolbarController from './toolbar/toolbar.controller.js';
 
 export function layoutRoute($stateProvider) {
     'ngInject';
@@ -20,6 +21,11 @@ export function mainRoute($stateProvider) {
                 templateUrl: 'app/components/layout/sidebar-left/sidebar-left.html',
                 controller: SidebarLeftController,
                 controllerAs: 'sdl'
+            },
+            'toolbar': {
+                templateUrl: 'app/components/layout/toolbar/toolbar.html',
+                controller: ToolbarController,
+                controllerAs: 'tlb'
             }
         }
     });
