@@ -15,35 +15,6 @@
   -webkit-backface-visibility: hidden;
 }
 
-// Side menu Bar
-.sidebar-left {
-  overflow-x: hidden;
-  md-content {
-    overflow-x: hidden;
-  }
-}
-
-.sidebar-left.md-locked-open {
-  width: 260px;
-  min-width: 260px;
-  max-width: 260px;
-  -ms-overflow-style: none; /* ie fix for removing scrollbars */
-  &.sidebar-collapsed {
-    min-width: 48px;
-    max-width: 48px;
-    transition: all .3s;
-    &.hover {
-      min-width: 260px;
-      max-width: 260px;
-    }
-  }
-  &.is-collapsing {
-    min-width: 48px;
-    max-width: 48px;
-    transition: all .3s;
-  }
-}
-
 // Toolbar
 .main-toolbar {
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);

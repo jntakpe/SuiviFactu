@@ -16,3 +16,61 @@
 .sidebar-left-icon {
   margin-right: -16px !important;
 }
+
+.sidebar-collapsed.md-locked-open {
+  .sidebar-left-title, .sidebar-left-icon {
+    opacity: 0;
+    transition: all .2s;
+    transition-delay: .3s;
+  }
+  .side-menu-link span {
+    opacity: 0;
+    transition: all .2s;
+    transition-delay: .3s;
+  }
+  .drop-down-list {
+    max-height: 0;
+  }
+  &.hover {
+    .sidebar-left-title, .sidebar-left-icon {
+      opacity: 1;
+    }
+    .side-menu-link span {
+      opacity: 1;
+    }
+    .drop-down-list {
+      max-height: 1300px;
+      &.ng-hide {
+        max-height: 0;
+      }
+    }
+  }
+}
+
+.sidebar-left {
+  overflow-x: hidden;
+  md-content {
+    overflow-x: hidden;
+  }
+}
+
+.sidebar-left.md-locked-open {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  -ms-overflow-style: none;
+  &.sidebar-collapsed {
+    min-width: 48px;
+    max-width: 48px;
+    transition: all .3s;
+    &.hover {
+      min-width: 260px;
+      max-width: 260px;
+    }
+  }
+  &.is-collapsing {
+    min-width: 48px;
+    max-width: 48px;
+    transition: all .3s;
+  }
+}
