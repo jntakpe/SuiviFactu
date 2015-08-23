@@ -4,7 +4,7 @@ export default class SidebarLeftController {
         'ngInject';
         SideMenuService.addMenu({
             name: 'MENU.CHARTS.CHARTS',
-            icon: 'icon-insert-chart',
+            icon: 'insert_chart',
             type: 'dropdown',
             priority: 5.1,
             children: [{

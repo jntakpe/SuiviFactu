@@ -1,7 +1,7 @@
 <md-button ng-click="sdm.toggleMenu()" class="md-raised md-primary side-menu-link">
-    <md-icon ng-if="::(sdm.item.icon !== undefined)" class="side-menu-icon">{{::sdm.item.icon}}</md-icon>
+    <md-icon ng-if="::(sdm.item.icon !== undefined)" class="side-menu-icon material-icons">{{::sdm.item.icon}}</md-icon>
     <span translate>{{::sdm.item.name}}</span>
-    <md-icon class="menu-toggle-icon" ng-class="{open: sdm.item.open}">icon-keyboard-arrow-right</md-icon>
+    <md-icon class="menu-toggle-icon material-icons" ng-class="{open: sdm.item.open}">keyboard_arrow_right</md-icon>
 </md-button>
 <ul class="drop-down-list" ng-show="sdm.item.open">
     <li ng-repeat="child in ::sdm.item.children | orderBy:'priority'">

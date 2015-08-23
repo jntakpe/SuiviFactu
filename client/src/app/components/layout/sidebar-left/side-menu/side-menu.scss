@@ -45,13 +45,13 @@ side-menu {
   }
 }
 
-.side-menu-icon[md-font-icon], .menu-toggle-icon[md-font-icon] {
+.side-menu-icon, .menu-toggle-icon {
   height: 100%;
   line-height: inherit;
   font-size: 1.5rem;
 }
 
-.side-menu-icon[md-font-icon] {
+.side-menu-icon {
   width: 24px;
 }
 
