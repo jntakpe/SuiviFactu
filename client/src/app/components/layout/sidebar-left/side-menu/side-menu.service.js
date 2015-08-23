@@ -16,7 +16,7 @@ export default class SideMenuService {
                     this.traverse(obj.children, callback, depth);
                 }
             }
-        }
+        };
     }
 
     addMenu(item) {
@@ -28,12 +28,12 @@ export default class SideMenuService {
     }
 
     traverseMenu(callback) {
-        traverse(menu, callback);
+        this.traverse(this.menu, callback);
     }
 
     getPath() {
         var path = [];
-        service.traverseMenu(item => {
+        this.traverseMenu(item => {
             if (item.active) {
                 path.push(item);
             }

@@ -12,13 +12,13 @@ export default class BreadcrumbService {
                 });
             });
             return breadcrumb;
-        }
+        };
     }
 
     resolveBreadcrumb() {
         return {
             title: this.$state.$current.data.title,
             parents: this.resolveParents(this.$state.$current.data.breadcrumb || [])
-        }
+        };
     }
 }

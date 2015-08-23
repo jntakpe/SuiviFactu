@@ -5,6 +5,7 @@
 
 .sidebar-left-logo {
   flex-shrink: 0;
+  padding-right: 5px;
   img {
     max-height: 64px;
     vertical-align: top;
@@ -15,6 +16,7 @@
 
 .sidebar-left-icon {
   margin-right: -16px !important;
+  padding-right: 5px;
 }
 
 .sidebar-collapsed.md-locked-open {

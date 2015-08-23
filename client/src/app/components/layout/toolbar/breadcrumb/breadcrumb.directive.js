@@ -7,7 +7,7 @@ export default function breadcrumbDirective() {
         templateUrl: 'app/components/layout/toolbar/breadcrumb/breadcrumb.html',
         controller: BreadcrumbController,
         controllerAs: 'brd'
-    }
+    };
 }
 
 class BreadcrumbController {

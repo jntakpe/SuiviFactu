@@ -11,7 +11,7 @@ export default function sideMenuItemDirective() {
         controller: SideMenuController,
         controllerAs: 'sdm'
     };
-};
+}
 
 class SideMenuController {
 
