@@ -1,0 +1,40 @@
+app:
+  name: ${project.name}
+  description: Spring Boot Starter Parent
+  version: 1.0-SNAPSHOT
+  termsOfServiceUrl: http://www.github.com/jntakpe/SuiviFactu
+  contact: j.ntakpe@gmail.com
+  license: MIT
+  licenseUrl: http://opensource.org/licenses/MIT
+management:
+  context-path: /manage
+  security:
+    enabled: false
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL82Dialect
+    database: postgresql
+    openInView: false
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+      hibernate.format_sql: true
+      hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+authentication:
+    oauth:
+        clientId: suivifactu
+        secret: suivifactusupersecuresecret
+        tokenValidityInSeconds: 1800
+---
+spring:
+  profiles: dev
+datasource:
+  url: jdbc:postgresql://localhost:5432/sf
+  username: postgres
+  password: sopra*
+  dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
