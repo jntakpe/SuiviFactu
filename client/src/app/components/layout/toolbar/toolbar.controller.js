@@ -6,7 +6,13 @@ export default class ToolbarController {
         this.$mdSidenav = $mdSidenav;
     }
 
-    openSidenavLeft(navID) {
+    openSidenav(navID) {
         this.$mdUtil.debounce(() => this.$mdSidenav(navID).toggle(), 300)();
+    }
+
+    toggleNotificationsTab(tab) {
+        //FIXME uncomment
+        // $scope.$parent.$broadcast('triSwitchNotificationTab', tab);
+        this.openSidenav('notifications');
     }
 }
