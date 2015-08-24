@@ -2,11 +2,15 @@ export default function homeRoute($stateProvider) {
     'ngInject';
     $stateProvider.state('main.home', {
         url: '/',
-        templateUrl: 'app/home/home.html',
-        controller: 'HomeController',
-        controllerAs: 'home',
         data: {
             title: 'Home'
+        },
+        views: {
+            'content@layout': {
+                templateUrl: 'app/home/home.html',
+                controller: 'HomeController',
+                controllerAs: 'home'
+            }
         }
     });
 }

@@ -9,8 +9,8 @@
                     md-theme="white-cyan" ui-view="toolbar">
             <i>Toolbar</i>
         </md-toolbar>
-        <md-content flex layout="column">
-            <div flex ui-view="content"><i>Content</i></div>
+        <md-content layout="column" flex>
+            <div id="main-panel-content-view" class="padded-content-page" ui-view="content" flex><i>Content</i></div>
         </md-content>
     </div>
     <md-sidenav layout layout-fill class="md-sidenav-right md-whiteframe-z2" md-component-id="notifications" ui-view="sidebarRight">
