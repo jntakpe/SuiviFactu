@@ -3,11 +3,11 @@ import OAuth2Service from './services/oauth2.service.js';
 import PrincipalService from './services/principal.service.js';
 import authInterceptor from './interceptors/auth.interceptor.js';
 import authExpiredInterceptor from './interceptors/auth-expired.interceptor.js';
-import SignInController from './signin/signin.controller.js';
+import authStateConfig from './authentification/authentification.route.js';
 
 export default angular
     .module('sf.security', ['LocalStorageModule'])
-    .config(configState)
+    .config(authStateConfig)
     .config(configInterceptors)
     .config(configLocalStorage)
     .run(run)
@@ -16,15 +16,6 @@ export default angular
     .service('PrincipalService', PrincipalService)
     .factory('authInterceptor', authInterceptor)
     .factory('authExpiredInterceptor', authExpiredInterceptor);
-
-function configState($stateProvider) {
-    $stateProvider.state('login', {
-        url: '/login?logout',
-        templateUrl: 'app/components/security/signin/signin.html',
-        controller: SignInController,
-        controllerAs: 'signin'
-    });
-}
 
 function configInterceptors($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');

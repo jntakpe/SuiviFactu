@@ -1,0 +1,50 @@
+<div layout="row" flex layout-padding layout-fill layout-align="center center">
+    <div flex="40" flex-lg="50" flex-md="70" flex-sm="100">
+        <md-card>
+            <md-toolbar>
+                <div class="padding-20 text-center">
+                    <div><img src="assets/images/sopra-steria.png" alt="Logo application"></div>
+                    <h1 class="md-headline">Connexion</h1>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding">
+                <form name="login">
+                    <md-input-container>
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" ng-model="lgn.user.email" required/>
+
+                        <div ng-if="login.email.$touched" ng-messages="login.email.$error">
+                            <div ng-message="required">L'adresse mail est obligatoire</div>
+                            <div ng-message="email">L'adresse est incorrecte</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="password">Mot de passe</label>
+                        <input id="password" name="password" type="password" ng-model="lgn.user.password" required/>
+
+                        <div ng-if="login.password.$touched" ng-messages for="login.password.$error">
+                            <div ng-message="required">Le mot de passe est obligatoire</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-button class="md-raised md-primary full-width login-action" ng-click="lgn.login()" ng-disabled="login.$invalid">
+                        Connexion
+                    </md-button>
+                    <div layout="row" layout-wrap>
+                        <div flex>
+                            <md-button class="md-primary login-action" ui-sref="authentification.signup">
+                                Créer un compte
+                            </md-button>
+                        </div>
+                        <div flex="20"></div>
+                        <div flex>
+                            <md-button class="md-primary login-action" ui-sref="authentification.forgot">
+                                Mot de passe oublié ?
+                            </md-button>
+                        </div>
+                    </div>
+                </form>
+            </md-content>
+        </md-card>
+    </div>
+</div>

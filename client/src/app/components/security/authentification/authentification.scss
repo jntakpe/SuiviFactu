@@ -1,0 +1,8 @@
+#ui-login {
+  &.ng-enter {
+    @include slideInUp($delay: 0.5s);
+  }
+  &.ng-leave {
+    @include slideOutDown();
+  }
+}

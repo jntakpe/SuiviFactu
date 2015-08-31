@@ -52,7 +52,6 @@ local.properties
 *.iml
 *.iws
 *.ipr
-*.ids
 *.orig
 
 ######################
@@ -112,5 +111,4 @@ Desktop.ini
 ######################
 *.class
 *.*~
-*~
 .merge_file*
