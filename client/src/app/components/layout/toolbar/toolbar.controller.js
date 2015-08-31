@@ -1,9 +1,10 @@
 export default class ToolbarController {
 
-    constructor($mdUtil, $mdSidenav) {
+    constructor($mdUtil, $mdSidenav, AuthService) {
         'ngInject';
         this.$mdUtil = $mdUtil;
         this.$mdSidenav = $mdSidenav;
+        this.AuthService = AuthService;
     }
 
     openSidenav(navID) {
@@ -14,5 +15,9 @@ export default class ToolbarController {
         //FIXME uncomment
         // $scope.$parent.$broadcast('triSwitchNotificationTab', tab);
         this.openSidenav('notifications');
+    }
+
+    logout() {
+        this.AuthService.logout();
     }
 }

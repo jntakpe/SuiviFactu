@@ -2,11 +2,13 @@ export default class LoginController {
 
     constructor($stateParams, toastr, AuthService) {
         'ngInject';
-        this.$stateParams = $stateParams;
-        this.toast = toastr;
+        this.toastr = toastr;
         this.AuthService = AuthService;
         this.user = {};
         AuthService.logout();
+        if ($stateParams.logout) {
+            toastr.success('Vous êtes à présent déconnecté de l\'application');
+        }
     }
 
     login() {

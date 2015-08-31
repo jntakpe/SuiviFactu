@@ -1,12 +1,13 @@
 export default class AuthService {
 
-    constructor($rootScope, $state, $q, PrincipalService, OAuth2Service) {
+    constructor($rootScope, $state, $q, PrincipalService, OAuth2Service, toastr) {
         'ngInject';
         this.$rootScope = $rootScope;
         this.$state = $state;
         this.$q = $q;
         this.PrincipalService = PrincipalService;
         this.OAuth2Service = OAuth2Service;
+        this.toastr = toastr;
     }
 
     login(credentials, callback) {
@@ -27,6 +28,7 @@ export default class AuthService {
     logout() {
         this.OAuth2Service.logout();
         this.PrincipalService.authenticate(null);
+        this.$state.go('authentification.login', {logout: true});
     }
 
     authorize(force) {
@@ -34,11 +36,9 @@ export default class AuthService {
                 let data = this.$rootScope.toState.data;
                 if (data && data.roles && data.roles.length > 0 && !this.PrincipalService.isInAnyRole(data.roles)) {
                     if (this.PrincipalService.isAuthenticated()) {
-                        //FIXME add error msg
+                        this.toastr.error('Vous n\'avez pas les droits requis pour accéder à cette ressource');
                         this.$state.go('main.home');
                     } else {
-                        this.$rootScope.returnToState = this.$rootScope.toState;
-                        this.$rootScope.returnToStateParams = this.$rootScope.toStateParams;
                         this.$state.go('login');
                     }
                 }
@@ -48,11 +48,6 @@ export default class AuthService {
     }
 
     loginSuccess() {
-        if (this.$rootScope.previousStateName === 'register') {
-            this.$state.go('main.home');
-        } else {
-            this.$rootScope.back();
-        }
-
+        this.$state.go('main.home');
     }
 }

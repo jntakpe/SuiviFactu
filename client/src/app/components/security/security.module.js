@@ -26,7 +26,7 @@ function configLocalStorage(localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('sf');
 }
 
-function run($rootScope, $state) {
+function run($rootScope, $state, PrincipalService, AuthService) {
     $rootScope.$on('$stateChangeStart', handleChangeStart);
     $rootScope.$on('$stateChangeSuccess', handleChangeSuccess);
     $rootScope.back = goBack;
@@ -39,6 +39,9 @@ function run($rootScope, $state) {
     function handleChangeSuccess(event, toState, toParams, fromState, fromParams) {
         $rootScope.previousStateName = fromState.name;
         $rootScope.previousStateParams = fromParams;
+        if (PrincipalService.isIdentityResolved()) {
+            AuthService.authorize();
+        }
     }
 
     function goBack() {

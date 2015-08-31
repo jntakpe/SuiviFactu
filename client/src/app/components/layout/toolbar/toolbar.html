@@ -5,7 +5,7 @@
 
     <breadcrumb flex></breadcrumb>
 
-    <md-button class="md-icon-button toolbar-button" ng-click="toggleNotificationsTab(0)">
+    <md-button class="md-icon-button toolbar-button" ng-click="tlb.toggleNotificationsTab(0)">
         <md-icon class="material-icons">notifications_none</md-icon>
         <span class="toolbar-button-badge">2</span>
     </md-button>
@@ -17,20 +17,20 @@
         </md-button>
         <md-menu-content width="4">
             <md-menu-item>
-                <md-button ng-click="toggleNotificationsTab(1)" aria-label="side navigation">
+                <md-button ng-click="tlb.toggleNotificationsTab(1)" aria-label="side navigation">
                     <md-icon class="material-icons">settings</md-icon>
                     Paramètres
                 </md-button>
             </md-menu-item>
             <md-menu-item>
-                <md-button ng-click="profile()" aria-label="side navigation">
+                <md-button ui-sref="main.profile" aria-label="side navigation">
                     <md-icon class="material-icons">person</md-icon>
                     Compte
                 </md-button>
             </md-menu-item>
             <md-menu-divider></md-menu-divider>
             <md-menu-item>
-                <md-button ng-click="logout()" aria-label="side navigation">
+                <md-button ng-click="tlb.logout()" aria-label="side navigation">
                     <md-icon class="material-icons">exit_to_app</md-icon>
                     Déconnexion
                 </md-button>

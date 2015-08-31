@@ -1,3 +1,5 @@
+import HomeController from './home.controller.js';
+
 export default function homeRoute($stateProvider) {
     'ngInject';
     $stateProvider.state('main.home', {
@@ -8,8 +10,8 @@ export default function homeRoute($stateProvider) {
         views: {
             'content@layout': {
                 templateUrl: 'app/home/home.html',
-                controller: 'HomeController',
-                controllerAs: 'home'
+                controller: HomeController,
+                controllerAs: 'hom'
             }
         }
     });
