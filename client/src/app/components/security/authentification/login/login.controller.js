@@ -10,10 +10,7 @@ export default class LoginController {
     }
 
     login() {
-        this.AuthService.login({
-            username: this.user.username,
-            password: this.user.password
-        }).then(() => this.AuthService.loginSuccess()).catch(() => {
+        this.AuthService.login(this.user).then(() => this.AuthService.loginSuccess()).catch(() => {
             this.user = {};
             this.toastr.error('Invalid credentials');
         });
