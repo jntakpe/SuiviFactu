@@ -27,18 +27,18 @@
                         </div>
                     </md-input-container>
 
-                    <md-button class="md-raised md-primary full-width login-action" ng-click="lgn.login()" ng-disabled="login.$invalid">
+                    <md-button class="md-raised md-primary full-width auth-action" ng-click="lgn.login()" ng-disabled="login.$invalid">
                         Connexion
                     </md-button>
                     <div layout="row" layout-wrap>
                         <div flex>
-                            <md-button class="md-primary login-action" ui-sref="authentification.signup">
+                            <md-button class="md-primary auth-action" ui-sref="auth.signup">
                                 Créer un compte
                             </md-button>
                         </div>
                         <div flex="20"></div>
                         <div flex>
-                            <md-button class="md-primary login-action" ui-sref="authentification.forgot">
+                            <md-button class="md-primary auth-action" ui-sref="auth.forgotpwd">
                                 Mot de passe oublié ?
                             </md-button>
                         </div>

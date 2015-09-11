@@ -28,7 +28,7 @@ export default class AuthService {
     logout() {
         this.OAuth2Service.logout();
         this.PrincipalService.authenticate(null);
-        this.$state.go('authentification.login', {logout: true});
+        this.$state.go('auth.login', {logout: true});
     }
 
     authorize(force) {
@@ -39,7 +39,7 @@ export default class AuthService {
                         this.toastr.error('Vous n\'avez pas les droits requis pour accéder à cette ressource');
                         this.$state.go('main.home');
                     } else {
-                        this.$state.go('login');
+                        this.$state.go('auth.login');
                     }
                 }
                 return identity;

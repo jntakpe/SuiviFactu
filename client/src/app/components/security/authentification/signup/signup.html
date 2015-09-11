@@ -1,0 +1,64 @@
+<div layout="row" flex layout-padding layout-fill layout-align="center center">
+    <div flex="40" flex-lg="50" flex-md="70" flex-sm="100">
+        <md-card>
+            <md-toolbar>
+                <div class="padding-20 text-center">
+                    <div><img src="assets/images/sopra-steria.png" alt="Logo application"></div>
+                    <h1 class="md-headline">Création de compte</h1>
+                </div>
+            </md-toolbar>
+
+            <md-content class="md-padding">
+                <form name="signup">
+                    <md-input-container>
+                        <label for="name">Nom</label>
+                        <input id="name" name="name" type="text" ng-model="sup.user.name" required/>
+
+                        <div ng-if="signup.name.$touched" ng-messages="signup.name.$error">
+                            <div ng-message="required">Le nom est obligatoire</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" ng-model="sup.user.email" required/>
+
+                        <div ng-if="signup.email.$touched" ng-messages="signup.email.$error">
+                            <div ng-message="required">L'adresse mail est obligatoire</div>
+                            <div ng-message="email">L'adresse mail est incorrecte</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label for="password">Mot de passe</label>
+                        <input id="password" name="password" type="password" ng-model="sup.user.password" ng-minlength="6" required/>
+
+                        <div ng-if="signup.password.$touched" ng-messages="signup.password.$error">
+                            <div ng-message="required">Le mot de passe est obligatoire</div>
+                            <div ng-message="minlength">Le mot de passe doit contenir au minimum 6 caracètres</div>
+                            <div ng-message="samePassword">Les mots de passe doivent correspondre</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label for="confirm">Confirmation de mot de passe</label>
+                        <input id="confirm" name="confirm" type="password" ng-model="sup.user.confirm" ng-minlength="6" required/>
+
+                        <div ng-if="signup.confirm.$touched" ng-messages="signup.confirm.$error">
+                            <div ng-message="required">Le mot de passe est obligatoire</div>
+                            <div ng-message="minlength">Le mot de passe doit contenir au minimum 6 caracètres</div>
+                            <div ng-message="samePassword">Les mots de passe doivent correspondre</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-button class="md-raised md-primary full-width auth-action" ng-click="sup.login()" ng-disabled="signup.$invalid">
+                        Créer le compte
+                    </md-button>
+                    <md-button class="md-primary auth-action" ui-sref="auth.login">
+                        Déjà enregistré ?
+                    </md-button>
+                </form>
+            </md-content>
+
+        </md-card>
+    </div>
+</div>
