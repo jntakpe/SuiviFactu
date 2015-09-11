@@ -1,15 +1,16 @@
 export default class OAuth2Service {
 
-    constructor($http, localStorageService) {
+    constructor($http, localStorageService, baseUrl) {
         'ngInject';
         this.$http = $http;
         this.localStorageService = localStorageService;
+        this.baseUrl = baseUrl;
     }
 
     login(credentials) {
         /* global btoa:false */
         var data = `username=${credentials.username}&password=${credentials.password}&grant_type=password&scope=read%20write&`;
-        return this.$http.post('oauth/token', data, {
+        return this.$http.post(this.baseUrl + 'oauth/token', data, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept': 'application/json',
@@ -25,7 +26,7 @@ export default class OAuth2Service {
     }
 
     logout() {
-        this.$http.post('api/logout').then(() => this.localStorageService.clearAll());
+        this.$http.post(this.baseUrl + 'api/logout').then(() => this.localStorageService.clearAll());
     }
 
     getToken() {

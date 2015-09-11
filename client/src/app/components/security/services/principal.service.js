@@ -1,10 +1,11 @@
 export default class PrincipalService {
 
-    constructor($q, $http) {
+    constructor($q, $http, baseUrl) {
         'ngInject';
         this.$q = $q;
         this.$http = $http;
         this.identity = null;
+        this.baseUrl = baseUrl;
         this.authenticated = false;
     }
 
@@ -46,7 +47,7 @@ export default class PrincipalService {
             deferred.resolve(this.identity);
             return deferred.promise;
         }
-        this.$http.get('api/account').then((response) => {
+        this.$http.get(this.baseUrl + 'api/account').then((response) => {
             this.identity = response.data;
             this.authenticated = true;
             deferred.resolve(this.identity);

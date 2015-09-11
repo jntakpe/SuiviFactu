@@ -38,3 +38,5 @@ datasource:
   username: postgres
   password: sopra*
   dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+server:
+  contextPath: /suivifactu

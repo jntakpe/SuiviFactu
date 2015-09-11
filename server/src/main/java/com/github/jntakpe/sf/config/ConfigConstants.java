@@ -1,9 +1,11 @@
 package com.github.jntakpe.sf.config;
 
 /**
+ * Constantes de configuration
+ *
  * @author jntakpe
  */
-public class ConfigConstants {
+public final class ConfigConstants {
 
     public static final String DEV_PROFILE = "dev";
 

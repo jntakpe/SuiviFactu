@@ -13,4 +13,6 @@ import java.util.Optional;
 public interface UtilisateurRepository extends GenericRepository<Utilisateur> {
 
     Optional<Utilisateur> findByEmailIgnoreCase(String email);
+
+    Optional<Utilisateur> findByNomIgnoreCase(String nom);
 }

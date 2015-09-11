@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
@@ -18,20 +19,21 @@ import java.util.Set;
 public class Utilisateur extends GenericDomain {
 
     @Email
+    @NotNull
     @Size(max = 100)
-    @Column(length = 100, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Size(max = 50)
-    @Column(length = 50)
-    private String prenom;
-
-    @Size(max = 50)
-    @Column(length = 50)
+    @NotNull
+    @Column(unique = true)
     private String nom;
 
-    @Column(length = 10)
-    private String telephone;
+    @NotNull
+    @Size(min = 6)
+    private String password;
+
+    @NotNull
+    private String confirm;
 
     @ManyToMany
     @JoinTable(name = "utilisateur_role",
@@ -47,14 +49,6 @@ public class Utilisateur extends GenericDomain {
         this.email = email;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
     public String getNom() {
         return nom;
     }
@@ -63,12 +57,20 @@ public class Utilisateur extends GenericDomain {
         this.nom = nom;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPassword() {
+        return password;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
     }
 
     public Set<Role> getRoles() {
@@ -77,6 +79,10 @@ public class Utilisateur extends GenericDomain {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
     }
 
     @Override
@@ -95,9 +101,7 @@ public class Utilisateur extends GenericDomain {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("telephone", telephone)
                 .append("nom", nom)
-                .append("prenom", prenom)
                 .append("email", email)
                 .toString();
     }

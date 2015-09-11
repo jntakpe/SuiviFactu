@@ -1,16 +1,20 @@
 package com.github.jntakpe.sf.service;
 
+import com.github.jntakpe.sf.domain.Role;
 import com.github.jntakpe.sf.domain.Utilisateur;
+import com.github.jntakpe.sf.repository.RoleRepository;
 import com.github.jntakpe.sf.repository.UtilisateurRepository;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import javax.persistence.NoResultException;
+import javax.validation.ValidationException;
 
 /**
  * Services associés à l'entité {@link Utilisateur}
@@ -24,23 +28,48 @@ public class UtilisateurService {
 
     private UtilisateurRepository utilisateurRepository;
 
+    private PasswordEncoder passwordEncoder;
+
+    private RoleRepository roleRepository;
+
     @Autowired
-    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+    public UtilisateurService(UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.utilisateurRepository = utilisateurRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
     @Transactional(readOnly = true)
     public Utilisateur findByEmailWithAuthorities(String email) {
-        Utilisateur utilisateur = findByEmail(email)
+        Utilisateur utilisateur = utilisateurRepository.findByEmailIgnoreCase(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Aucun utilisateur correspondant au mail " + email));
         LOGGER.debug("Récupération des rôles liés à l'utilisateur : {}", email);
         Hibernate.initialize(utilisateur.getRoles());
         return utilisateur;
     }
 
+    @Transactional
+    public Utilisateur register(Utilisateur utilisateur) {
+        checkPasswordMatch(utilisateur);
+        encodePassword(utilisateur);
+        addRoleUser(utilisateur);
+        LOGGER.info("Enregistrement d'un nouvel utilisateur {}", utilisateur);
+        return utilisateurRepository.save(utilisateur);
+    }
+
+    private void checkPasswordMatch(Utilisateur utilisateur) {
+        if (!utilisateur.getPassword().equals(utilisateur.getConfirm())) {
+            throw new ValidationException("Les mots de passe ne correspondent pas");
+        }
+    }
+
+    private void encodePassword(Utilisateur utilisateur) {
+        utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+    }
+
     @Transactional(readOnly = true)
-    public Optional<Utilisateur> findByEmail(String email) {
-        LOGGER.debug("Recherche d'un utilisateur avec son adresse mail : {}", email);
-        return utilisateurRepository.findByEmailIgnoreCase(email);
+    private void addRoleUser(Utilisateur utilisateur) {
+        utilisateur.addRole(roleRepository.findByNom(Role.ROLE_USER)
+                .orElseThrow(() -> new NoResultException("Le rôle " + Role.ROLE_USER + " est introuvable")));
     }
 }

@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnWebApplication
 public class SwaggerConfig {
 
-    public static final String API_PATTERN = "/oauth/.*";
+    public static final String API_PATTERN = "/api/.*";
 
     private static final Logger LOG = LoggerFactory.getLogger(SwaggerConfig.class);
 

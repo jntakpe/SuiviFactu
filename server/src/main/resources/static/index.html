@@ -11,6 +11,8 @@
             var apiUrl = window.location.protocol + "//" + window.location.host;
             if (window.location.pathname.indexOf('/swagger-ui/index.html') > 0) {
                 apiUrl += window.location.pathname.substring(0, window.location.pathname.indexOf('/swagger-ui/index.html'))
+            } else {
+                apiUrl += window.location.pathname;
             }
             apiUrl += "/api-docs";
             log('API URL: ' + apiUrl);

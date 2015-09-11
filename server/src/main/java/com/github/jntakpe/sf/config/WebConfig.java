@@ -13,6 +13,8 @@ public class WebConfig {
 
     @Bean
     public Module hibernate4Module() {
-        return new Hibernate4Module();
+        Hibernate4Module hibernate4Module = new Hibernate4Module();
+        hibernate4Module.disable(Hibernate4Module.Feature.USE_TRANSIENT_ANNOTATION);
+        return hibernate4Module;
     }
 }

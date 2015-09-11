@@ -15,7 +15,7 @@ function browserSyncInit(baseDir, browser) {
     browser = browser === undefined ? 'default' : browser;
 
     var routes = null;
-    var proxyRoutes = ['/api', '/oauth'];
+    var proxyRoutes = ['/suivifactu'];
 
     if (baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
         routes = {

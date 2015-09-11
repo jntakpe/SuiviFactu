@@ -11,6 +11,7 @@ import homeRoute from './home/home.route.js';
 angular.module('sf', [coreModule.name, securityModule.name, layoutModule.name])
     .constant('toastr', toastr)
     .constant('moment', moment)
+    .constant('baseUrl', '/suivifactu')
     .run(runBlock)
     .config(config)
     .config(routerConfig)

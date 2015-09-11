@@ -11,10 +11,10 @@
             <md-content class="md-padding">
                 <form name="signup">
                     <md-input-container>
-                        <label for="name">Nom</label>
-                        <input id="name" name="name" type="text" ng-model="sup.user.name" required/>
+                        <label for="nom">Nom</label>
+                        <input id="nom" name="nom" type="text" ng-model="sup.user.nom" required/>
 
-                        <div ng-if="signup.name.$touched" ng-messages="signup.name.$error">
+                        <div ng-if="signup.nom.$touched" ng-messages="signup.nom.$error">
                             <div ng-message="required">Le nom est obligatoire</div>
                         </div>
                     </md-input-container>
@@ -50,7 +50,7 @@
                         </div>
                     </md-input-container>
 
-                    <md-button class="md-raised md-primary full-width auth-action" ng-click="sup.login()" ng-disabled="signup.$invalid">
+                    <md-button class="md-raised md-primary full-width auth-action" ng-click="sup.register()" ng-disabled="signup.$invalid">
                         Créer le compte
                     </md-button>
                     <md-button class="md-primary auth-action" ui-sref="auth.login">

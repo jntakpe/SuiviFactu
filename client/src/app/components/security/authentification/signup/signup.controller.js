@@ -8,9 +8,8 @@ export default class SignupController {
     }
 
     register() {
-        this.AuthService.login(this.user).then(() => this.AuthService.loginSuccess()).catch(() => {
-            this.user = {};
-            this.toastr.error('Invalid credentials');
+        this.AuthService.register(this.user).then(function registered() {
+            console.log('Registered');
         });
     }
 
