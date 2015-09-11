@@ -7,6 +7,7 @@ import authExpiredInterceptor from './interceptors/auth-expired.interceptor.js';
 import authStateConfig from './authentification/authentification.route.js';
 import usernameUniqueDirective from './authentification/signup/username-unique.directive.js';
 import emailUniqueDirective from './authentification/signup/email-unique.directive.js';
+import samePasswordDirective from './authentification/signup/same-password.directive.js';
 
 export default angular
     .module('sf.security', ['LocalStorageModule'])
@@ -21,7 +22,8 @@ export default angular
     .factory('authInterceptor', authInterceptor)
     .factory('authExpiredInterceptor', authExpiredInterceptor)
     .directive('usernameUnique', usernameUniqueDirective)
-    .directive('emailUnique', emailUniqueDirective);
+    .directive('emailUnique', emailUniqueDirective)
+    .directive('samePassword', samePasswordDirective);
 
 function configInterceptors($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');

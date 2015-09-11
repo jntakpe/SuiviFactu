@@ -34,7 +34,8 @@
 
                     <md-input-container>
                         <label for="password">Mot de passe</label>
-                        <input id="password" name="password" type="password" ng-model="sup.user.password" ng-minlength="6" required/>
+                        <input id="password" name="password" type="password" ng-model="sup.user.password" ng-minlength="6" required
+                               same-password="signup.confirm"/>
 
                         <div ng-if="signup.password.$touched" ng-messages="signup.password.$error">
                             <div ng-message="required">Le mot de passe est obligatoire</div>
@@ -45,7 +46,8 @@
 
                     <md-input-container>
                         <label for="confirm">Confirmation de mot de passe</label>
-                        <input id="confirm" name="confirm" type="password" ng-model="sup.user.confirm" ng-minlength="6" required/>
+                        <input id="confirm" name="confirm" type="password" ng-model="sup.user.confirm" ng-minlength="6" required
+                               same-password="signup.password"/>
 
                         <div ng-if="signup.confirm.$touched" ng-messages="signup.confirm.$error">
                             <div ng-message="required">Le mot de passe est obligatoire</div>
