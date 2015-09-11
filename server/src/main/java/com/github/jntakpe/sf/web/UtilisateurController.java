@@ -3,10 +3,9 @@ package com.github.jntakpe.sf.web;
 import com.github.jntakpe.sf.domain.Utilisateur;
 import com.github.jntakpe.sf.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,5 +28,15 @@ public class UtilisateurController {
     @RequestMapping(method = RequestMethod.POST)
     public Utilisateur register(@Valid @RequestBody Utilisateur utilisateur) {
         return utilisateurService.register(utilisateur);
+    }
+
+    @RequestMapping(value = "/nameAvailable", method = RequestMethod.GET)
+    public ResponseEntity isNameAvailable(@RequestParam String name, @RequestParam(required = false) Long id) {
+        return new ResponseEntity(utilisateurService.isUsernameAvailable(name, id) ? HttpStatus.OK : HttpStatus.CONFLICT);
+    }
+
+    @RequestMapping(value = "/emailAvailable", method = RequestMethod.GET)
+    public ResponseEntity isEmailAvailable(@RequestParam String email, @RequestParam(required = false) Long id) {
+        return new ResponseEntity(utilisateurService.isEmailAvailable(email, id) ? HttpStatus.OK : HttpStatus.CONFLICT);
     }
 }

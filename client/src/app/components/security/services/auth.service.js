@@ -1,6 +1,6 @@
 export default class AuthService {
 
-    constructor($rootScope, $state, $q, PrincipalService, OAuth2Service, toastr, Restangular) {
+    constructor($rootScope, $state, $q, PrincipalService, OAuth2Service, toastr) {
         'ngInject';
         this.$rootScope = $rootScope;
         this.$state = $state;
@@ -8,7 +8,6 @@ export default class AuthService {
         this.PrincipalService = PrincipalService;
         this.OAuth2Service = OAuth2Service;
         this.toastr = toastr;
-        this.baseUsers = Restangular.all('utilisateurs');
     }
 
     login(credentials, callback) {
@@ -52,7 +51,4 @@ export default class AuthService {
         this.$state.go('main.home');
     }
 
-    register(user) {
-        return this.baseUsers.post(user);
-    }
 }

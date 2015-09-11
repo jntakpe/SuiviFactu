@@ -4,6 +4,7 @@ import com.github.jntakpe.sf.domain.Role;
 import com.github.jntakpe.sf.domain.Utilisateur;
 import com.github.jntakpe.sf.repository.RoleRepository;
 import com.github.jntakpe.sf.repository.UtilisateurRepository;
+import com.github.jntakpe.sf.utils.ValidationUtils;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +56,16 @@ public class UtilisateurService {
         addRoleUser(utilisateur);
         LOGGER.info("Enregistrement d'un nouvel utilisateur {}", utilisateur);
         return utilisateurRepository.save(utilisateur);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean isUsernameAvailable(String username, Long id) {
+        return ValidationUtils.isAvailable(utilisateurRepository.findByNomIgnoreCase(username), id);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean isEmailAvailable(String mail, Long id) {
+        return ValidationUtils.isAvailable(utilisateurRepository.findByEmailIgnoreCase(mail), id);
     }
 
     private void checkPasswordMatch(Utilisateur utilisateur) {

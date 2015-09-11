@@ -12,19 +12,23 @@
                 <form name="signup">
                     <md-input-container>
                         <label for="nom">Nom</label>
-                        <input id="nom" name="nom" type="text" ng-model="sup.user.nom" required/>
+                        <input id="nom" name="nom" type="text" ng-model="sup.user.nom" required username-unique
+                               ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0}}"/>
 
                         <div ng-if="signup.nom.$touched" ng-messages="signup.nom.$error">
                             <div ng-message="required">Le nom est obligatoire</div>
+                            <div ng-message="unique">Le nom est déjà utilisé</div>
                         </div>
                     </md-input-container>
                     <md-input-container>
                         <label for="email">Email</label>
-                        <input id="email" name="email" type="email" ng-model="sup.user.email" required/>
+                        <input id="email" name="email" type="email" ng-model="sup.user.email" required email-unique
+                               ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0}}"/>
 
                         <div ng-if="signup.email.$touched" ng-messages="signup.email.$error">
                             <div ng-message="required">L'adresse mail est obligatoire</div>
                             <div ng-message="email">L'adresse mail est incorrecte</div>
+                            <div ng-message="unique">L'adresse mail est déjà utilisée</div>
                         </div>
                     </md-input-container>
 
@@ -50,7 +54,8 @@
                         </div>
                     </md-input-container>
 
-                    <md-button class="md-raised md-primary full-width auth-action" ng-click="sup.register()" ng-disabled="signup.$invalid">
+                    <md-button class="md-raised md-primary full-width auth-action" ng-click="sup.register()"
+                               ng-disabled="signup.$invalid || signup.$pending">
                         Créer le compte
                     </md-button>
                     <md-button class="md-primary auth-action" ui-sref="auth.login">

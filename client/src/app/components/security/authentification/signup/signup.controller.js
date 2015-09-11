@@ -1,15 +1,15 @@
 export default class SignupController {
 
-    constructor(toastr, AuthService) {
+    constructor(toastr, UserService) {
         'ngInject';
         this.toastr = toastr;
-        this.AuthService = AuthService;
+        this.UserService = UserService;
         this.user = {};
     }
 
     register() {
-        this.AuthService.register(this.user).then(function registered() {
-            console.log('Registered');
+        this.UserService.create(this.user).then(function registered() {
+
         });
     }
 
