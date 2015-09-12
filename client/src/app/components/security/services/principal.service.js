@@ -18,19 +18,20 @@ export default class PrincipalService {
     }
 
     isInRole(role) {
-        return this.authenticated && this.identity && this.identity.roles && this.identity.roles.indexOf(role) !== -1;
+        return this.authenticated && this.identity && this.identity.roles && !!_.find(this.identity.roles, {nom: role});
     }
 
     isInAnyRole(roles) {
         if (!this.authenticated || !this.identity) {
             return false;
         }
+        let found = false;
         roles.forEach((role) => {
             if (this.isInRole(role)) {
-                return true;
+                found = true;
             }
         });
-        return false;
+        return found;
     }
 
     authenticate(account) {
@@ -47,7 +48,7 @@ export default class PrincipalService {
             deferred.resolve(this.identity);
             return deferred.promise;
         }
-        this.$http.get(this.baseUrl + '/api/account').then((response) => {
+        this.$http.get(this.baseUrl + '/api/utilisateurs/current').then((response) => {
             this.identity = response.data;
             this.authenticated = true;
             deferred.resolve(this.identity);

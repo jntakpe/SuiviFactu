@@ -28,23 +28,23 @@ export default class AuthService {
     logout() {
         this.OAuth2Service.logout();
         this.PrincipalService.authenticate(null);
-        this.$state.go('auth.login', {logout: true});
     }
 
     authorize(force) {
-        return this.PrincipalService.resolveIdentity(force).then(identity => {
-                let data = this.$rootScope.toState.data;
-                if (data && data.roles && data.roles.length > 0 && !this.PrincipalService.isInAnyRole(data.roles)) {
-                    if (this.PrincipalService.isAuthenticated()) {
-                        this.toastr.error('Vous n\'avez pas les droits requis pour accéder à cette ressource');
-                        this.$state.go('main.home');
-                    } else {
-                        this.$state.go('auth.login');
+        let data = this.$rootScope.toState.data;
+        if (data && data.roles && data.roles.length > 0) {
+            this.PrincipalService.resolveIdentity(force).then(() => {
+                    if (!this.PrincipalService.isInAnyRole(data.roles)) {
+                        if (this.PrincipalService.isAuthenticated()) {
+                            this.toastr.error('Vous n\'avez pas les droits requis pour accéder à cette ressource');
+                            this.$state.go('main.home');
+                        } else {
+                            this.$state.go('auth.login');
+                        }
                     }
                 }
-                return identity;
-            }
-        );
+            ).catch(() => this.$state.go('auth.login'));
+        }
     }
 
     loginSuccess() {

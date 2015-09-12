@@ -11,7 +11,7 @@ import emailSopraDirective from './authentification/signup/email-sopra.directive
 import samePasswordDirective from './authentification/signup/same-password.directive.js';
 
 export default angular
-    .module('sf.security', ['LocalStorageModule'])
+    .module('sf.security', [])
     .config(authStateConfig)
     .config(configInterceptors)
     .config(configLocalStorage)
@@ -36,7 +36,7 @@ function configLocalStorage(localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('sf');
 }
 
-function run($rootScope, $state, PrincipalService, AuthService) {
+function run($rootScope, $state, AuthService) {
     $rootScope.$on('$stateChangeStart', handleChangeStart);
     $rootScope.$on('$stateChangeSuccess', handleChangeSuccess);
     $rootScope.back = goBack;
@@ -49,9 +49,7 @@ function run($rootScope, $state, PrincipalService, AuthService) {
     function handleChangeSuccess(event, toState, toParams, fromState, fromParams) {
         $rootScope.previousStateName = fromState.name;
         $rootScope.previousStateParams = fromParams;
-        if (PrincipalService.isIdentityResolved()) {
-            AuthService.authorize();
-        }
+        AuthService.authorize();
     }
 
     function goBack() {

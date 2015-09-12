@@ -25,6 +25,11 @@ public class UtilisateurController {
         this.utilisateurService = utilisateurService;
     }
 
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
+    public Utilisateur current() {
+        return utilisateurService.current();
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public Utilisateur register(@Valid @RequestBody Utilisateur utilisateur) {
         return utilisateurService.register(utilisateur);
@@ -39,4 +44,5 @@ public class UtilisateurController {
     public ResponseEntity isEmailAvailable(@RequestParam String email, @RequestParam(required = false) Long id) {
         return new ResponseEntity(utilisateurService.isEmailAvailable(email, id) ? HttpStatus.OK : HttpStatus.CONFLICT);
     }
+
 }

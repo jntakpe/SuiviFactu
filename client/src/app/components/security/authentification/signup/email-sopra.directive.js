@@ -1,4 +1,4 @@
-export default function emailSopraDirective(UserService) {
+export default function emailSopraDirective() {
     return {
         restrict: 'A',
         require: 'ngModel',

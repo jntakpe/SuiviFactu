@@ -4,6 +4,7 @@ import com.github.jntakpe.sf.config.ConfigConstants;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.common.exceptions.UnauthorizedUserException;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -18,11 +19,6 @@ public final class SecurityUtils {
     private SecurityUtils() {
     }
 
-    /**
-     * Récupère l'utilisateur Spring Security courant
-     *
-     * @return l'utilisateur courant
-     */
     public static Optional<SpringSecurityUser> getCurrentUser() {
         Authentication authentication = getAuthentification();
         SpringSecurityUser springSecurityUser;
@@ -33,11 +29,10 @@ public final class SecurityUtils {
         return Optional.empty();
     }
 
-    /**
-     * Vérifie si l'utilisateur est authentifié
-     *
-     * @return {@code true} si l'utilisateur est authentifié sinon {@code false}
-     */
+    public static Long getCurrentUserId() {
+        return getCurrentUser().orElseThrow(() -> new UnauthorizedUserException("L'utilisateur courant est introuvable")).getId();
+    }
+
     public static boolean isAuthenticated() {
         Collection<? extends GrantedAuthority> authorities = getAuthentification().getAuthorities();
         if (authorities != null) {

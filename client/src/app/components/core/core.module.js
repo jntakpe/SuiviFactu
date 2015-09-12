@@ -3,6 +3,7 @@ export default angular.module('sf.core', [
     'ngMessages',
     'ui.router',
     'restangular',
-    'md.data.table'
+    'md.data.table',
+    'LocalStorageModule'
 ]);
 

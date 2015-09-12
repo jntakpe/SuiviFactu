@@ -5,7 +5,8 @@ export default function homeRoute($stateProvider) {
     $stateProvider.state('main.home', {
         url: '/',
         data: {
-            title: 'Home'
+            title: 'Home',
+            roles: ['ROLE_USER']
         },
         views: {
             'content@layout': {

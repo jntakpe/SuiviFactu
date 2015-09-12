@@ -1,10 +1,12 @@
 export default class ToolbarController {
 
-    constructor($mdUtil, $mdSidenav, AuthService) {
+    constructor($mdUtil, $mdSidenav, $state, AuthService, identity) {
         'ngInject';
         this.$mdUtil = $mdUtil;
         this.$mdSidenav = $mdSidenav;
         this.AuthService = AuthService;
+        this.$state = $state;
+        this.name = identity.nom;
     }
 
     openSidenav(navID) {
@@ -19,5 +21,6 @@ export default class ToolbarController {
 
     logout() {
         this.AuthService.logout();
+        this.$state.go('auth.login', {logout: true});
     }
 }

@@ -7,7 +7,10 @@ export function layoutRoute($stateProvider) {
     $stateProvider.state('layout', {
         templateUrl: 'app/components/layout/layout.html',
         controller: LayoutController,
-        controllerAs: 'lyt'
+        controllerAs: 'lyt',
+        resolve: {
+            identity: (PrincipalService) => PrincipalService.resolveIdentity()
+        }
     });
 }
 

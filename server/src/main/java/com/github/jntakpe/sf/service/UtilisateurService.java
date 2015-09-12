@@ -1,5 +1,6 @@
 package com.github.jntakpe.sf.service;
 
+import com.github.jntakpe.sf.config.security.SecurityUtils;
 import com.github.jntakpe.sf.domain.Role;
 import com.github.jntakpe.sf.domain.Utilisateur;
 import com.github.jntakpe.sf.repository.RoleRepository;
@@ -38,6 +39,14 @@ public class UtilisateurService {
         this.utilisateurRepository = utilisateurRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public Utilisateur current() {
+        LOGGER.debug("Récupération de l'utilisateur courant et des rôles associés");
+        Utilisateur utilisateur = utilisateurRepository.findOne(SecurityUtils.getCurrentUserId());
+        Hibernate.initialize(utilisateur.getRoles());
+        return utilisateur;
     }
 
     @Transactional(readOnly = true)
