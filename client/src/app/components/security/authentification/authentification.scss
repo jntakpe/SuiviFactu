@@ -3,6 +3,7 @@
   &.ng-enter {
     @include slideInUp($delay: 0.5s);
   }
+
   &.ng-leave {
     @include slideOutDown();
   }
@@ -11,18 +12,22 @@
     max-width: 400px;
     margin: auto;
   }
+
   md-checkbox {
     margin: 0;
   }
+
   img {
     max-height: 100px;
     width: auto;
   }
+
   md-toolbar {
     .md-headline {
       margin: 0;
     }
   }
+
   .md-primary:not(.md-raised) {
     text-transform: none;
   }

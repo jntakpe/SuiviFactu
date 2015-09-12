@@ -22,12 +22,12 @@
                         <label for="password">Mot de passe</label>
                         <input id="password" name="password" type="password" ng-model="lgn.user.password" required/>
 
-                        <div ng-if="login.password.$touched" ng-messages for="login.password.$error">
+                        <div ng-if="login.password.$touched" ng-messages="login.password.$error">
                             <div ng-message="required">Le mot de passe est obligatoire</div>
                         </div>
                     </md-input-container>
 
-                    <md-button class="md-raised md-primary full-width auth-action" ng-click="lgn.login()" ng-disabled="login.$invalid">
+                    <md-button class="md-raised md-primary full-width auth-action" ng-click="lgn.login(login)" ng-disabled="login.$invalid">
                         Connexion
                     </md-button>
                     <div layout="row" layout-wrap>

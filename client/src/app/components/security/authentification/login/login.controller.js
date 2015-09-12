@@ -12,15 +12,19 @@ export default class LoginController {
             toastr.info('Vous êtes à présent déconnecté de l\'application');
         }
         if ($stateParams.register) {
-            toastr.success('Vous êtes bien enregistré. Vous allez recevoir un mail d\'activation du compte.')
+            toastr.success('Vous êtes bien enregistré. Vous allez recevoir un mail d\'activation du compte.');
         }
     }
 
-    login() {
-        this.AuthService.login(this.user).then(() => this.AuthService.loginSuccess()).catch(() => {
-            this.user = {};
-            this.toastr.error('Invalid credentials');
-        });
+    login(form) {
+        this.AuthService.login(this.user)
+            .then(() => this.AuthService.loginSuccess())
+            .catch(() => {
+                this.toastr.error('Les identifiants renseignés sont invalides');
+                this.user = {};
+                form.$setPristine();
+                form.$setUntouched();
+            });
     }
 
 }
