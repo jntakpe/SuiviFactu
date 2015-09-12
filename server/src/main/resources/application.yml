@@ -1,7 +1,7 @@
 app:
-  name: ${project.name}
-  description: ${project.description}
-  version: ${project.version}
+  name: SuiviFactu
+  description: Suivi des facturations
+  version: 0.1.0
   termsOfServiceUrl: http://www.github.com/jntakpe/SuiviFactu
   contact: j.ntakpe@gmail.com
   license: MIT

@@ -22,12 +22,13 @@
                     </md-input-container>
                     <md-input-container>
                         <label for="email">Email</label>
-                        <input id="email" name="email" type="email" ng-model="sup.user.email" required email-unique
+                        <input id="email" name="email" type="email" ng-model="sup.user.email" required email-unique email-sopra
                                ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0}}"/>
 
                         <div ng-if="signup.email.$touched" ng-messages="signup.email.$error">
                             <div ng-message="required">L'adresse mail est obligatoire</div>
                             <div ng-message="email">L'adresse mail est incorrecte</div>
+                            <div ng-message="sopra">L'adresse mail doit être une adresse Sopra Steria</div>
                             <div ng-message="unique">L'adresse mail est déjà utilisée</div>
                         </div>
                     </md-input-container>

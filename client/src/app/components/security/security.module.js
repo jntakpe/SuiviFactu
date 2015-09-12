@@ -7,6 +7,7 @@ import authExpiredInterceptor from './interceptors/auth-expired.interceptor.js';
 import authStateConfig from './authentification/authentification.route.js';
 import usernameUniqueDirective from './authentification/signup/username-unique.directive.js';
 import emailUniqueDirective from './authentification/signup/email-unique.directive.js';
+import emailSopraDirective from './authentification/signup/email-sopra.directive.js';
 import samePasswordDirective from './authentification/signup/same-password.directive.js';
 
 export default angular
@@ -23,6 +24,7 @@ export default angular
     .factory('authExpiredInterceptor', authExpiredInterceptor)
     .directive('usernameUnique', usernameUniqueDirective)
     .directive('emailUnique', emailUniqueDirective)
+    .directive('emailSopra', emailSopraDirective)
     .directive('samePassword', samePasswordDirective);
 
 function configInterceptors($httpProvider) {

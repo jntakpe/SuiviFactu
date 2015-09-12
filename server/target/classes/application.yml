@@ -1,7 +1,7 @@
 app:
-  name: ${project.name}
-  description: Spring Boot Starter Parent
-  version: 1.0-SNAPSHOT
+  name: SuiviFactu
+  description: Suivi des facturations
+  version: 0.1.0
   termsOfServiceUrl: http://www.github.com/jntakpe/SuiviFactu
   contact: j.ntakpe@gmail.com
   license: MIT

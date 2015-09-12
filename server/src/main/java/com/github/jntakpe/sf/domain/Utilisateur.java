@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,6 +21,7 @@ public class Utilisateur extends GenericDomain {
 
     @Email
     @NotNull
+    @Pattern(regexp = ".*@soprasteria\\.com$")
     @Size(max = 100)
     @Column(unique = true)
     private String email;
