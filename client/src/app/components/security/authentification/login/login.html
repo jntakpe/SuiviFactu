@@ -11,7 +11,7 @@
                 <form name="login">
                     <md-input-container>
                         <label for="email">Email</label>
-                        <input id="email" name="email" type="email" ng-model="lgn.user.username" required/>
+                        <input id="email" name="email" type="email" ng-model="lgn.user.username" autocomplete="off" required/>
 
                         <div ng-if="login.email.$touched" ng-messages="login.email.$error">
                             <div ng-message="required">L'adresse mail est obligatoire</div>

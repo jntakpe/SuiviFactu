@@ -32,8 +32,7 @@ public class UtilisateurDetailsServiceImpl implements UserDetailsService {
 
     private static SpringSecurityUser mapUserDetails(Utilisateur utilisateur) {
         List<GrantedAuthority> auths = mapAuthorities(utilisateur);
-        //FIXME change pass
-        return new SpringSecurityUser(utilisateur.getId(), utilisateur.getEmail(), "test", auths);
+        return new SpringSecurityUser(utilisateur.getId(), utilisateur.getEmail(), utilisateur.getPassword(), auths);
     }
 
     private static List<GrantedAuthority> mapAuthorities(Utilisateur utilisateur) {

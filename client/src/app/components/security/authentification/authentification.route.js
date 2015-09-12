@@ -8,7 +8,7 @@ export default function authStateConfig($stateProvider) {
         abstract: true,
         templateUrl: 'app/components/security/authentification/authentification.html'
     }).state('auth.login', {
-        url: '/login?logout',
+        url: '/login?logout&register',
         templateUrl: 'app/components/security/authentification/login/login.html',
         controller: LoginController,
         controllerAs: 'lgn'

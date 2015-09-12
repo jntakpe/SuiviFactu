@@ -47,7 +47,7 @@ export default class PrincipalService {
             deferred.resolve(this.identity);
             return deferred.promise;
         }
-        this.$http.get(this.baseUrl + 'api/account').then((response) => {
+        this.$http.get(this.baseUrl + '/api/account').then((response) => {
             this.identity = response.data;
             this.authenticated = true;
             deferred.resolve(this.identity);

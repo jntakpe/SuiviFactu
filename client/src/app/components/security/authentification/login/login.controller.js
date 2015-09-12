@@ -1,13 +1,18 @@
 export default class LoginController {
 
-    constructor($stateParams, toastr, AuthService) {
+    constructor($stateParams, toastr, AuthService, PrincipalService) {
         'ngInject';
         this.toastr = toastr;
         this.AuthService = AuthService;
         this.user = {};
-        AuthService.logout();
+        if (PrincipalService.isAuthenticated()) {
+            AuthService.logout();
+        }
         if ($stateParams.logout) {
-            toastr.success('Vous êtes à présent déconnecté de l\'application');
+            toastr.info('Vous êtes à présent déconnecté de l\'application');
+        }
+        if ($stateParams.register) {
+            toastr.success('Vous êtes bien enregistré. Vous allez recevoir un mail d\'activation du compte.')
         }
     }
 

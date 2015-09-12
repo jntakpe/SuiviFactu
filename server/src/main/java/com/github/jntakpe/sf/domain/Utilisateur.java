@@ -33,6 +33,7 @@ public class Utilisateur extends GenericDomain {
     private String password;
 
     @NotNull
+    @Transient
     private String confirm;
 
     @ManyToMany
