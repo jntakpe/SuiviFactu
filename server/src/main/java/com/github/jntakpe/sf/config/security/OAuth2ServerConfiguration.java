@@ -1,6 +1,7 @@
 package com.github.jntakpe.sf.config.security;
 
 import com.github.jntakpe.sf.config.ConfigConstants;
+import com.github.jntakpe.sf.config.UrlConstants;
 import com.github.jntakpe.sf.config.properties.OAuthProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +18,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -49,7 +49,7 @@ public class OAuth2ServerConfiguration {
                     .authenticationEntryPoint(authenticationEntryPoint)
                     .and()
                     .logout()
-                    .logoutUrl("/api/logout")
+                    .logoutUrl(UrlConstants.BASE + "/logout")
                     .logoutSuccessHandler(ajaxLogoutSuccessHandler)
                     .and()
                     .csrf().disable()
@@ -59,6 +59,7 @@ public class OAuth2ServerConfiguration {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authorizeRequests()
+                    .antMatchers(UrlConstants.BASE + "/**").authenticated()
                     .antMatchers("/manage/**").hasAnyAuthority(ConfigConstants.ADMIN);
         }
     }
