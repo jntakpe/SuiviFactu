@@ -14,6 +14,9 @@ export default class LoginController {
         if ($stateParams.register) {
             toastr.success('Vous êtes bien enregistré. Vous allez recevoir un mail d\'activation du compte.');
         }
+        if ($stateParams.forgot) {
+            toastr.success('Votre mot de passe a été réinitialisé. Vous allez recevoir un mail contenant un nouveau mot de passe');
+        }
     }
 
     login(form) {

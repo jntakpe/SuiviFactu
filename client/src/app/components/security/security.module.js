@@ -1,17 +1,13 @@
+import authModule from './authentification/authentification.module.js';
 import AuthService from './services/auth.service.js';
 import OAuth2Service from './services/oauth2.service.js';
 import PrincipalService from './services/principal.service.js';
-import UserService from './services/user.service.js';
 import authInterceptor from './interceptors/auth.interceptor.js';
 import authExpiredInterceptor from './interceptors/auth-expired.interceptor.js';
 import authStateConfig from './authentification/authentification.route.js';
-import usernameUniqueDirective from './authentification/signup/username-unique.directive.js';
-import emailUniqueDirective from './authentification/signup/email-unique.directive.js';
-import emailSopraDirective from './authentification/signup/email-sopra.directive.js';
-import samePasswordDirective from './authentification/signup/same-password.directive.js';
 
 export default angular
-    .module('sf.security', [])
+    .module('sf.security', [authModule.name])
     .config(authStateConfig)
     .config(configInterceptors)
     .config(configLocalStorage)
@@ -19,13 +15,8 @@ export default angular
     .service('AuthService', AuthService)
     .service('OAuth2Service', OAuth2Service)
     .service('PrincipalService', PrincipalService)
-    .service('UserService', UserService)
     .factory('authInterceptor', authInterceptor)
-    .factory('authExpiredInterceptor', authExpiredInterceptor)
-    .directive('usernameUnique', usernameUniqueDirective)
-    .directive('emailUnique', emailUniqueDirective)
-    .directive('emailSopra', emailSopraDirective)
-    .directive('samePassword', samePasswordDirective);
+    .factory('authExpiredInterceptor', authExpiredInterceptor);
 
 function configInterceptors($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');

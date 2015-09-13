@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -59,6 +60,10 @@ public class OAuth2ServerConfiguration {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authorizeRequests()
+                    .antMatchers(HttpMethod.POST, UrlConstants.BASE + "/utilisateurs").permitAll()
+                    .antMatchers(UrlConstants.BASE + "/utilisateurs/nameAvailable").permitAll()
+                    .antMatchers(UrlConstants.BASE + "/utilisateurs/emailAvailable").permitAll()
+                    .antMatchers(UrlConstants.BASE + "/utilisateurs/resetPassword").permitAll()
                     .antMatchers(UrlConstants.BASE + "/**").authenticated()
                     .antMatchers("/manage/**").hasAnyAuthority(ConfigConstants.ADMIN);
         }

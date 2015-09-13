@@ -6,7 +6,7 @@ export default class ToolbarController {
         this.$mdSidenav = $mdSidenav;
         this.AuthService = AuthService;
         this.$state = $state;
-        this.name = identity.nom;
+        this.name = identity && identity.nom;
     }
 
     openSidenav(navID) {

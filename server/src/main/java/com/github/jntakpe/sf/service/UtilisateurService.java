@@ -51,11 +51,9 @@ public class UtilisateurService {
 
     @Transactional(readOnly = true)
     public Utilisateur findByEmailWithAuthorities(String email) {
-        Utilisateur utilisateur = utilisateurRepository.findByEmailIgnoreCase(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Aucun utilisateur correspondant au mail " + email));
-        LOGGER.debug("Récupération des rôles liés à l'utilisateur : {}", email);
-        Hibernate.initialize(utilisateur.getRoles());
-        return utilisateur;
+        LOGGER.debug("Recherche d'un utilisateur avec l'adresse mail {}", email);
+        return findRoles(utilisateurRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Aucun utilisateur correspondant au mail " + email)));
     }
 
     @Transactional
@@ -77,6 +75,11 @@ public class UtilisateurService {
         return ValidationUtils.isAvailable(utilisateurRepository.findByEmailIgnoreCase(mail), id);
     }
 
+    @Transactional
+    public void resetPassword() {
+
+    }
+
     private void checkPasswordMatch(Utilisateur utilisateur) {
         if (!utilisateur.getPassword().equals(utilisateur.getConfirm())) {
             throw new ValidationException("Les mots de passe ne correspondent pas");
@@ -91,5 +94,12 @@ public class UtilisateurService {
     private void addRoleUser(Utilisateur utilisateur) {
         utilisateur.addRole(roleRepository.findByNom(Role.ROLE_USER)
                 .orElseThrow(() -> new NoResultException("Le rôle " + Role.ROLE_USER + " est introuvable")));
+    }
+
+    @Transactional(readOnly = true)
+    private Utilisateur findRoles(Utilisateur utilisateur) {
+        LOGGER.debug("Récupération des rôles liés à l'utilisateur : {}", utilisateur);
+        Hibernate.initialize(utilisateur.getRoles());
+        return utilisateur;
     }
 }

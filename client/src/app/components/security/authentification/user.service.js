@@ -9,11 +9,19 @@ export default class UserService {
         return this.baseUsers.post(user);
     }
 
+    forgotPassword(email) {
+        return this.baseUsers.customGET('forgotpwd', {email: email});
+    }
+
     isNameAvailable(name, id) {
         return this.baseUsers.customGET('nameAvailable', {name, id});
     }
 
     isEmailAvailable(email, id) {
         return this.baseUsers.customGET('emailAvailable', {email, id});
+    }
+
+    resetPassword(email) {
+        return this.baseUsers.customPOST({email}, 'resetPassword');
     }
 }

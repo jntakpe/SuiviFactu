@@ -45,4 +45,9 @@ public class UtilisateurController {
         return new ResponseEntity(utilisateurService.isEmailAvailable(email, id) ? HttpStatus.OK : HttpStatus.CONFLICT);
     }
 
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    public ResponseEntity resetPassword(@RequestBody Utilisateur utilisateur) {
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }

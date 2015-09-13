@@ -1,0 +1,40 @@
+<div layout="row" flex layout-padding layout-fill layout-align="center center">
+    <div flex="40" flex-lg="50" flex-md="70" flex-sm="100">
+        <md-card>
+            <md-toolbar>
+                <div class="padding-20 text-center">
+                    <div><img src="assets/images/sopra-steria.png" alt="Logo application"></div>
+                    <h1 class="md-headline">Réinitialisation du mot de passe</h1>
+                </div>
+            </md-toolbar>
+
+
+            <md-content class="md-padding">
+                <p>Veuillez renseigner votre adresse mail</p>
+
+                <form name="forgot">
+                    <md-input-container>
+                        <label for="email" translate>Email Sopra Steria</label>
+                        <input id="email" name="email" type="email" ng-model="fgt.user.email" required email-exist
+                               ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0}}"/>
+
+                        <div ng-if="forgot.email.$touched" ng-messages="forgot.email.$error">
+                            <div ng-message="required">L'adresse mail est obligatoire</div>
+                            <div ng-message="email">L'adresse mail est incorrecte</div>
+                            <div ng-message="exist">L'adresse mail n'existe pas</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-button class="md-raised md-primary full-width auth-action" ng-click="fgt.resetPwd()"
+                               ng-disabled="forgot.$invalid || forgot.$pending">
+                        Réinitialiser le mot de passe
+                    </md-button>
+                    <md-button class="md-primary auth-action full-width" ui-sref="auth.login">
+                        Mot de passe retrouvé ? Se connecter
+                    </md-button>
+                </form>
+            </md-content>
+        </md-card>
+
+    </div>
+</div>

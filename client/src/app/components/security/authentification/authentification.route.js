@@ -1,5 +1,6 @@
 import LoginController from './login/login.controller.js';
 import SignupController from './signup/signup.controller.js';
+import ForgotController from './forgot/forgot.controller.js';
 
 export default function authStateConfig($stateProvider) {
     'ngInject';
@@ -17,6 +18,11 @@ export default function authStateConfig($stateProvider) {
         templateUrl: 'app/components/security/authentification/signup/signup.html',
         controller: SignupController,
         controllerAs: 'sup'
+    }).state('auth.forgotpwd', {
+        url: '/forgotpwd',
+        templateUrl: 'app/components/security/authentification/forgot/forgot.html',
+        controller: ForgotController,
+        controllerAs: 'fgt'
     });
 
 }
