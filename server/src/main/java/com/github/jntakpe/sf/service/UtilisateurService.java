@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
+import java.util.Optional;
 
 /**
  * Services associés à l'entité {@link Utilisateur}
@@ -51,8 +52,7 @@ public class UtilisateurService {
 
     @Transactional(readOnly = true)
     public Utilisateur findByEmailWithAuthorities(String email) {
-        LOGGER.debug("Recherche d'un utilisateur avec l'adresse mail {}", email);
-        return findRoles(utilisateurRepository.findByEmailIgnoreCase(email)
+        return findRoles(findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Aucun utilisateur correspondant au mail " + email)));
     }
 
@@ -67,17 +67,17 @@ public class UtilisateurService {
 
     @Transactional(readOnly = true)
     public boolean isUsernameAvailable(String username, Long id) {
-        return ValidationUtils.isAvailable(utilisateurRepository.findByNomIgnoreCase(username), id);
+        return ValidationUtils.isAvailable(findByNom(username), id);
     }
 
     @Transactional(readOnly = true)
     public boolean isEmailAvailable(String mail, Long id) {
-        return ValidationUtils.isAvailable(utilisateurRepository.findByEmailIgnoreCase(mail), id);
+        return ValidationUtils.isAvailable(findByEmail(mail), id);
     }
 
     @Transactional
-    public void resetPassword() {
-
+    public Utilisateur resetPassword(String email) {
+        return findByEmail(email).orElseThrow(NoResultException::new);
     }
 
     private void checkPasswordMatch(Utilisateur utilisateur) {
@@ -101,5 +101,17 @@ public class UtilisateurService {
         LOGGER.debug("Récupération des rôles liés à l'utilisateur : {}", utilisateur);
         Hibernate.initialize(utilisateur.getRoles());
         return utilisateur;
+    }
+
+    @Transactional(readOnly = true)
+    private Optional<Utilisateur> findByEmail(String email) {
+        LOGGER.debug("Recherche d'un utilisateur avec l'adresse mail {}", email);
+        return utilisateurRepository.findByEmailIgnoreCase(email);
+    }
+
+    @Transactional(readOnly = true)
+    private Optional<Utilisateur> findByNom(String nom) {
+        LOGGER.debug("Recherche d'une utilisateur avec le login {}", nom);
+        return utilisateurRepository.findByNomIgnoreCase(nom);
     }
 }

@@ -1,12 +1,15 @@
 package com.github.jntakpe.sf.web;
 
 import com.github.jntakpe.sf.domain.Utilisateur;
+import com.github.jntakpe.sf.service.MailService;
 import com.github.jntakpe.sf.service.UtilisateurService;
+import com.github.jntakpe.sf.utils.UrlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -20,9 +23,12 @@ public class UtilisateurController {
 
     private UtilisateurService utilisateurService;
 
+    private MailService mailService;
+
     @Autowired
-    public UtilisateurController(UtilisateurService utilisateurService) {
+    public UtilisateurController(UtilisateurService utilisateurService, MailService mailService) {
         this.utilisateurService = utilisateurService;
+        this.mailService = mailService;
     }
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)
@@ -46,8 +52,10 @@ public class UtilisateurController {
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public ResponseEntity resetPassword(@RequestBody Utilisateur utilisateur) {
-        return new ResponseEntity(HttpStatus.OK);
+    public Utilisateur resetPassword(@RequestBody Utilisateur utilisateur, HttpServletRequest request) {
+        Utilisateur updatedUser = utilisateurService.resetPassword(utilisateur.getEmail());
+        mailService.sendActivationEmail(updatedUser, UrlUtils.getBaseUrl(request));
+        return updatedUser;
     }
 
 }

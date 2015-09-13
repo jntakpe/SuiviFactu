@@ -25,6 +25,8 @@ spring:
       hibernate.generate_statistics: true
       hibernate.format_sql: true
       hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+  thymeleaf:
+    prefix: classpath:/mails/
 authentication:
     oauth:
         clientId: suivifactu
@@ -40,3 +42,12 @@ datasource:
   dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
 server:
   contextPath: /suivifactu
+mail:
+  host: smtp.gmail.com
+  port: 587
+  from: suivifactu@gmail.com
+  username: suivifactu@gmail.com
+  password: suivifactusupersecurepassword
+  protocol: smtp
+  tls: true
+  auth: true
