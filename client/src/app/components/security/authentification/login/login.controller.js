@@ -1,6 +1,6 @@
 export default class LoginController {
 
-    constructor($stateParams, toastr, AuthService, PrincipalService) {
+    constructor($stateParams, toastr, $timeout, AuthService, PrincipalService) {
         'ngInject';
         this.toastr = toastr;
         this.AuthService = AuthService;
@@ -9,13 +9,15 @@ export default class LoginController {
             AuthService.logout();
         }
         if ($stateParams.logout) {
-            toastr.info('Vous êtes à présent déconnecté de l\'application');
+            $timeout(() => toastr.info('Vous êtes à présent déconnecté de l\'application'), 1000);
         }
         if ($stateParams.register) {
-            toastr.success('Vous êtes bien enregistré. Vous allez recevoir un mail d\'activation du compte.');
+            $timeout(() => toastr.success('Vous êtes bien enregistré. Vous allez recevoir un mail d\'activation du compte.'), 1000);
         }
         if ($stateParams.forgot) {
-            toastr.success('Votre mot de passe a été réinitialisé. Vous allez recevoir un mail contenant un nouveau mot de passe');
+            $timeout(() => {
+                toastr.success('Votre mot de passe a été réinitialisé. Vous allez recevoir un mail contenant un nouveau mot de passe');
+            }, 1000);
         }
     }
 

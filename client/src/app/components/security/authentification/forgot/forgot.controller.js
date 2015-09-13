@@ -11,6 +11,6 @@ export default class ForgotController {
     resetPwd() {
         this.UserService.resetPassword(this.user.email)
             .then(() => this.$state.go('auth.login', {forgot: true}))
-            .catch((response) => this.toastr.error('Erreur lors de l\'envoi du mail de réinitialisation'));
+            .catch((response) => this.toastr.error('Erreur lors de la réinitialisation du mot de passe'));
     }
 }
