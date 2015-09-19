@@ -6,6 +6,7 @@ import com.github.jntakpe.sf.domain.Utilisateur;
 import com.github.jntakpe.sf.repository.RoleRepository;
 import com.github.jntakpe.sf.repository.UtilisateurRepository;
 import com.github.jntakpe.sf.utils.ValidationUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +62,7 @@ public class UtilisateurService {
         checkPasswordMatch(utilisateur);
         encodePassword(utilisateur);
         addRoleUser(utilisateur);
+        utilisateur.setActivationKey(RandomStringUtils.randomAlphanumeric(20));
         LOGGER.info("Enregistrement d'un nouvel utilisateur {}", utilisateur);
         return utilisateurRepository.save(utilisateur);
     }

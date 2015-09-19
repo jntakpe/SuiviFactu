@@ -1,1 +1,26 @@
-Test
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Réinitialisation du mot de passe</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>
+    Dear
+</p>
+
+<p>
+    Une demande de réinitialisation du mot de passe a été faite. Veuillez cliquer sur le lien ci-dessous pour changer votre mot de passe.
+</p>
+
+<p>
+    <a th:href="@{|${baseUrl}/#/reset/key=${user.resetKey}|}" th:text="|${user.login}|">Réinitialisation</a>
+</p>
+
+<p>
+    <span th:text="#{email.reset.text2}">Cordialement,</span>
+    <br/>
+    <em th:text="#{email.signature}">Jocelyn N'TAKPE</em>
+</p>
+</body>
+</html>

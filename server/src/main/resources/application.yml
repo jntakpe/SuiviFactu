@@ -32,6 +32,10 @@ authentication:
         clientId: suivifactu
         secret: suivifactusupersecuresecret
         tokenValidityInSeconds: 1800
+async:
+    corePoolSize: 2
+    maxPoolSize: 50
+    queueCapacity: 10000
 ---
 spring:
   profiles: dev

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -39,6 +40,17 @@ public class Utilisateur extends GenericDomain {
     @NotNull
     @Transient
     private String confirm;
+
+    private boolean activated = false;
+
+    @JsonIgnore
+    @Size(max = 20)
+    private String activationKey;
+
+    @Size(max = 20)
+    private String resetKey;
+
+    private DateTime resetDate;
 
     @ManyToMany
     @JoinTable(name = "utilisateur_role",
@@ -90,6 +102,38 @@ public class Utilisateur extends GenericDomain {
 
     public void addRole(Role role) {
         roles.add(role);
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
+    }
+
+    public DateTime getResetDate() {
+        return resetDate;
+    }
+
+    public void setResetDate(DateTime resetDate) {
+        this.resetDate = resetDate;
     }
 
     @Override

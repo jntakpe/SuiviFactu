@@ -10,7 +10,7 @@ export default class PrincipalService {
     }
 
     isIdentityResolved() {
-        return this.identity !== null;
+        return this.identity;
     }
 
     isAuthenticated() {
@@ -36,7 +36,7 @@ export default class PrincipalService {
 
     authenticate(account) {
         this.identity = account;
-        this.authenticated = this.identity !== null;
+        this.authenticated = !!this.identity;
     }
 
     resolveIdentity(force) {

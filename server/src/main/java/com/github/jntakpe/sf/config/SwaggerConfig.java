@@ -36,6 +36,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .includePatterns(API_PATTERN);
         swagger.build();
+
         return swagger;
     }
 
@@ -49,4 +50,5 @@ public class SwaggerConfig {
                 appInfosProperties.getLicenseUrl()
         );
     }
+
 }
