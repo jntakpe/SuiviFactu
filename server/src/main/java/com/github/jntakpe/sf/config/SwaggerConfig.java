@@ -1,16 +1,16 @@
 package com.github.jntakpe.sf.config;
 
-import com.github.jntakpe.sf.config.properties.AppInfosProperties;
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import com.google.common.base.Predicate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import static com.google.common.base.Predicates.or;
+import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
  * Configuration de Swagger
@@ -18,37 +18,32 @@ import org.springframework.context.annotation.Configuration;
  * @author jntakpe
  */
 @Configuration
-@EnableSwagger
-@ConditionalOnWebApplication
+@EnableSwagger2
 public class SwaggerConfig {
 
-    public static final String API_PATTERN = "/api/.*";
-
-    private static final Logger LOG = LoggerFactory.getLogger(SwaggerConfig.class);
-
-    @Autowired
-    private AppInfosProperties appInfosProperties;
-
     @Bean
-    public SwaggerSpringMvcPlugin swaggerSpringMvcPlugin(SpringSwaggerConfig springSwaggerConfig) {
-        LOG.debug("Generating Swagger api docs");
-        SwaggerSpringMvcPlugin swagger = new SwaggerSpringMvcPlugin(springSwaggerConfig)
+    public Docket parcApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .includePatterns(API_PATTERN);
-        swagger.build();
+                .select()
+                .paths(apiPaths())
+                .build();
+    }
 
-        return swagger;
+    private Predicate<String> apiPaths() {
+        return or(
+                regex("/api.*")
+        );
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfo(
-                appInfosProperties.getName(),
-                appInfosProperties.getDescription(),
-                appInfosProperties.getTermsOfService(),
-                appInfosProperties.getContact(),
-                appInfosProperties.getLicense(),
-                appInfosProperties.getLicenseUrl()
-        );
+        return new ApiInfoBuilder()
+                .title("Suivi factu REST API")
+                .description("Documentation de l'API REST de l'application Suivi de facturation")
+                .termsOfServiceUrl("https://github.com/jntakpe/SuiviFactu")
+                .contact("jocelyn.ntakpe@soprasteria.com")
+                .version("0.1.0")
+                .build();
     }
 
 }

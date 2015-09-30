@@ -4,13 +4,13 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "lodash": "~3.10.0",
-    "angular": "~1.4.5",
+    "angular": "~1.4.7",
     "angular-ui-router": "~0.2.15",
-    "angular-animate": "~1.4.5",
-    "angular-touch": "~1.4.5",
-    "angular-messages": "~1.4.5",
-    "angular-material": "~0.11.0",
-    "angular-material-data-table": "~0.8.8",
+    "angular-animate": "~1.4.7",
+    "angular-touch": "~1.4.7",
+    "angular-messages": "~1.4.7",
+    "angular-material": "~0.11.1",
+    "angular-material-data-table": "~0.8.13",
     "angular-local-storage": "~0.2.2",
     "restangular": "~1.5.1",
     "toastr": "~2.1.1",
@@ -18,11 +18,11 @@
     "animate.css-scss": "https://github.com/geoffgraham/animate.scss.git#master"
   },
   "devDependencies": {
-    "angular-mocks": "~1.4.5"
+    "angular-mocks": "~1.4.7"
   },
   "resolutions": {
     "jquery": "~2.1.4",
-    "angular": "~1.4.5",
+    "angular": "~1.4.7",
     "angular-material": "~0.11.0"
   }
 }

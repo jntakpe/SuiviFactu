@@ -1,13 +1,13 @@
 ######################
 # Node
 ######################
-/node/**
-/node_modules/**
+/node/
+/node_modules/
 
 ######################
 # SASS
 ######################
-.sass-cache/**
+.sass-cache/
 
 ######################
 # Bower
@@ -20,8 +20,8 @@
 *.pydevproject
 .project
 .metadata
-/bin/**
-/tmp/**
+/bin/
+/tmp/
 /tmp/**/*
 *.tmp
 *.bak
@@ -29,12 +29,12 @@
 *~.nib
 local.properties
 .classpath
-.settings/**
+.settings/
 .loadpath
 /src/main/resources/rebel.xml
 
 # External tool builders
-.externalToolBuilders/**
+.externalToolBuilders/
 
 # Locally stored "Eclipse launch configurations"
 *.launch
@@ -48,7 +48,7 @@ local.properties
 ######################
 # Intellij
 ######################
-.idea/**
+.idea/
 *.iml
 *.iws
 *.ipr
@@ -57,13 +57,13 @@ local.properties
 ######################
 # Maven
 ######################
-/log/**
-/target/**
+/log/
+/target/
 
 ######################
 # Gradle
 ######################
-.gradle/**
+.gradle/
 
 ######################
 # Package Files
@@ -98,8 +98,8 @@ Desktop.ini
 ######################
 # Directories
 ######################
-/build/**
-/deploy/**
+/build/
+/deploy/
 
 ######################
 # Logs

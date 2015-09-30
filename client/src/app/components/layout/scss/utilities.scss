@@ -18,6 +18,12 @@
   margin: 16px;
 }
 
+// - No Scroll
+.no-scroll {
+  overflow: hidden;
+}
+
+
 $i: 0;
 @while $i <= 200 {
   .margin-#{$i} {

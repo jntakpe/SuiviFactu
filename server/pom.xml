@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.5.RELEASE</version>
+        <version>1.2.6.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -21,20 +21,22 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <spring-boot.version>1.2.5.RELEASE</spring-boot.version>
-        <spring-security.version>4.0.1.RELEASE</spring-security.version>
+        <spring-boot.version>1.2.6.RELEASE</spring-boot.version>
+        <spring-data-releasetrain.version>Fowler-SR2</spring-data-releasetrain.version>
+        <spring-security.version>4.0.2.RELEASE</spring-security.version>
         <spring-cloud-starter.version>1.0.1.RELEASE</spring-cloud-starter.version>
         <spring-security-oauth2.version>2.0.7.RELEASE</spring-security-oauth2.version>
-        <hibernate.version>4.3.10.Final</hibernate.version>
+        <hibernate.version>5.0.1.Final</hibernate.version>
+        <hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
         <commons-lang3.version>3.4</commons-lang3.version>
-        <jackson.version>2.5.3</jackson.version>
+        <jackson.version>2.6.2</jackson.version>
         <postgres.version>9.4-1201-jdbc41</postgres.version>
-        <h2.version>1.4.187</h2.version>
+        <h2.version>1.4.189</h2.version>
         <javassist.version>3.18.2-GA</javassist.version>
         <testng.version>6.9.4</testng.version>
         <assertj.version>3.1.0</assertj.version>
         <dbsetup.version>1.6.0</dbsetup.version>
-        <swagger-springmvc.version>1.0.2</swagger-springmvc.version>
+        <springfox-swagger2.version>2.2.2</springfox-swagger2.version>
         <metrics-spring.version>3.1.0</metrics-spring.version>
     </properties>
 
@@ -99,21 +101,27 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernate.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>net.sf.ehcache</groupId>
-                    <artifactId>ehcache-core</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-hibernate4</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
@@ -127,23 +135,14 @@
             <version>${h2.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mangofactory</groupId>
-            <artifactId>swagger-springmvc</artifactId>
-            <version>${swagger-springmvc.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jackson-module-scala_2.10</artifactId>
-                    <groupId>com.fasterxml.jackson.module</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>scalap</artifactId>
-                    <groupId>org.scala-lang</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>scala-compiler</artifactId>
-                    <groupId>org.scala-lang</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger2.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>

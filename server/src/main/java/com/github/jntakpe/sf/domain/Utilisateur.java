@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -41,6 +41,7 @@ public class Utilisateur extends GenericDomain {
     @Transient
     private String confirm;
 
+    @NotNull
     private boolean activated = false;
 
     @JsonIgnore
@@ -50,7 +51,7 @@ public class Utilisateur extends GenericDomain {
     @Size(max = 20)
     private String resetKey;
 
-    private DateTime resetDate;
+    private LocalDateTime resetDate;
 
     @ManyToMany
     @JoinTable(name = "utilisateur_role",
@@ -128,11 +129,11 @@ public class Utilisateur extends GenericDomain {
         this.resetKey = resetKey;
     }
 
-    public DateTime getResetDate() {
+    public LocalDateTime getResetDate() {
         return resetDate;
     }
 
-    public void setResetDate(DateTime resetDate) {
+    public void setResetDate(LocalDateTime resetDate) {
         this.resetDate = resetDate;
     }
 
