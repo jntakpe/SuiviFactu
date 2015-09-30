@@ -15,4 +15,6 @@ public interface UtilisateurRepository extends GenericRepository<Utilisateur> {
     Optional<Utilisateur> findByEmailIgnoreCase(String email);
 
     Optional<Utilisateur> findByNomIgnoreCase(String nom);
+
+    Optional<Utilisateur> findByActivationKey(String key);
 }

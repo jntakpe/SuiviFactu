@@ -1,5 +1,5 @@
 -- Utilisateurs
-INSERT INTO utilisateur (email, nom, password, activated) VALUES ('jocelyn.ntakpe@soprasteria.com', 'jntakpe', '$2a$10$h2Q5T3fvVpW8FchnKoX1CeU9lIkv3GLfLFex4k4q0A1vw1C13FEpu', true);
+--INSERT INTO utilisateur (email, nom, password, activated) VALUES ('jocelyn.ntakpe@soprasteria.com', 'jntakpe', '$2a$10$h2Q5T3fvVpW8FchnKoX1CeU9lIkv3GLfLFex4k4q0A1vw1C13FEpu', true);
 INSERT INTO public.utilisateur (activated, activationkey, email, nom, password) VALUES (false, 'y9vWWo5b3AmYTKJrjCiy', 'nassim.boutouta@soprasteria.com', 'nboutouta', '$2a$10$zhQYFnIxb.8bOrSsGnkr1OUJXFPO1wIWfiZVt1YQQZkg1QPxPnseO');
 
 -- Rôles

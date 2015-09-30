@@ -37,8 +37,10 @@ public class UtilisateurController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Utilisateur register(@Valid @RequestBody Utilisateur utilisateur) {
-        return utilisateurService.register(utilisateur);
+    public Utilisateur register(@Valid @RequestBody Utilisateur utilisateur, HttpServletRequest request) {
+        Utilisateur registered = utilisateurService.register(utilisateur);
+        mailService.sendActivationEmail(registered, UrlUtils.getBaseUrl(request));
+        return registered;
     }
 
     @RequestMapping(value = "/nameAvailable", method = RequestMethod.GET)
@@ -56,6 +58,11 @@ public class UtilisateurController {
         Utilisateur updatedUser = utilisateurService.resetPassword(utilisateur.getEmail());
         mailService.sendActivationEmail(updatedUser, UrlUtils.getBaseUrl(request));
         return updatedUser;
+    }
+
+    @RequestMapping(value = "/activate/{key}", method = RequestMethod.POST)
+    public Utilisateur activate(@PathVariable String key) {
+        return utilisateurService.activate(key);
     }
 
 }

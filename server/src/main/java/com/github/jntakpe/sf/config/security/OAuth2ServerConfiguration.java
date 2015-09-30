@@ -64,6 +64,7 @@ public class OAuth2ServerConfiguration {
                     .antMatchers(UrlConstants.BASE + "/utilisateurs/nameAvailable").permitAll()
                     .antMatchers(UrlConstants.BASE + "/utilisateurs/emailAvailable").permitAll()
                     .antMatchers(UrlConstants.BASE + "/utilisateurs/resetPassword").permitAll()
+                    .antMatchers(HttpMethod.POST, UrlConstants.BASE + "/utilisateurs/activate/**").permitAll()
                     .antMatchers(UrlConstants.BASE + "/**").authenticated()
                     .antMatchers("/manage/**").hasAnyAuthority(ConfigConstants.ADMIN);
         }

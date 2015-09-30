@@ -37,7 +37,6 @@ public class Utilisateur extends GenericDomain {
     @Size(min = 6)
     private String password;
 
-    @NotNull
     @Transient
     private String confirm;
 

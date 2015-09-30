@@ -14,8 +14,8 @@ public class SpringSecurityUser extends User {
 
     private final Long id;
 
-    public SpringSecurityUser(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        super(username, password, authorities);
+    public SpringSecurityUser(Long id, String username, String password, boolean activated, Collection<? extends GrantedAuthority> auths) {
+        super(username, password, activated, true, true, true, auths);
         this.id = id;
     }
 

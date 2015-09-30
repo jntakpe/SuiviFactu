@@ -3,6 +3,9 @@ package com.github.jntakpe.sf.service;
 import com.github.jntakpe.sf.config.security.SecurityUtils;
 import com.github.jntakpe.sf.domain.Role;
 import com.github.jntakpe.sf.domain.Utilisateur;
+import com.github.jntakpe.sf.exception.FunctionalCode;
+import com.github.jntakpe.sf.exception.SfException;
+import com.github.jntakpe.sf.exception.TechnicalCode;
 import com.github.jntakpe.sf.repository.RoleRepository;
 import com.github.jntakpe.sf.repository.UtilisateurRepository;
 import com.github.jntakpe.sf.utils.ValidationUtils;
@@ -11,12 +14,10 @@ import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
 import java.util.Optional;
 
@@ -54,7 +55,7 @@ public class UtilisateurService {
     @Transactional(readOnly = true)
     public Utilisateur findByEmailWithAuthorities(String email) {
         return findRoles(findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Aucun utilisateur correspondant au mail " + email)));
+                .orElseThrow(() -> new SfException("Aucun utilisateur correspondant au mail " + email, FunctionalCode.USERNAME_NOT_FOUND)));
     }
 
     @Transactional
@@ -65,6 +66,15 @@ public class UtilisateurService {
         utilisateur.setActivationKey(RandomStringUtils.randomAlphanumeric(20));
         LOGGER.info("Enregistrement d'un nouvel utilisateur {}", utilisateur);
         return utilisateurRepository.save(utilisateur);
+    }
+
+    @Transactional
+    public Utilisateur activate(String key) {
+        Utilisateur utilisateur = utilisateurRepository.findByActivationKey(key)
+                .orElseThrow(() -> new SfException("La clé d'activation " + key + " n'existe pas", TechnicalCode.NO_RESULT));
+        utilisateur.setActivated(true);
+        utilisateur.setActivationKey(null);
+        return utilisateur;
     }
 
     @Transactional(readOnly = true)
@@ -79,7 +89,7 @@ public class UtilisateurService {
 
     @Transactional
     public Utilisateur resetPassword(String email) {
-        return findByEmail(email).orElseThrow(NoResultException::new);
+        return findByEmail(email).orElseThrow(() -> new SfException("Adresse mail " + email + " introuvable", TechnicalCode.NO_RESULT));
     }
 
     private void checkPasswordMatch(Utilisateur utilisateur) {
@@ -95,7 +105,7 @@ public class UtilisateurService {
     @Transactional(readOnly = true)
     private void addRoleUser(Utilisateur utilisateur) {
         utilisateur.addRole(roleRepository.findByNom(Role.ROLE_USER)
-                .orElseThrow(() -> new NoResultException("Le rôle " + Role.ROLE_USER + " est introuvable")));
+                .orElseThrow(() -> new SfException("Le rôle " + Role.ROLE_USER + " est introuvable", FunctionalCode.FORBIDDEN)));
     }
 
     @Transactional(readOnly = true)

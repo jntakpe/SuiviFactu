@@ -1,10 +1,11 @@
 package com.github.jntakpe.sf.config.security;
 
 import com.github.jntakpe.sf.config.ConfigConstants;
+import com.github.jntakpe.sf.exception.FunctionalCode;
+import com.github.jntakpe.sf.exception.SfException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.common.exceptions.UnauthorizedUserException;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public final class SecurityUtils {
     }
 
     public static Long getCurrentUserId() {
-        return getCurrentUser().orElseThrow(() -> new UnauthorizedUserException("L'utilisateur courant est introuvable")).getId();
+        return getCurrentUser().orElseThrow(() -> new SfException(FunctionalCode.NOT_AUTHENTICATED)).getId();
     }
 
     public static boolean isAuthenticated() {

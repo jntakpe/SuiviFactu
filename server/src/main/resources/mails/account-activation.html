@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Réinitialisation du mot de passe</title>
+    <title>Activation Suivi facturation</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p>
-    Dear
-</p>
+<p>Cher <span th:text="${utilisateur.nom}"></span>,</p>
+
+<p>Votre compte Suivi Facturation a été créé. Vous pouvez activer votre compte en cliquant sur ce
+    <a th:href="@{|${baseUrl}/#/activate?key=${utilisateur.activationKey}|}">lien</a>.</p>
 
 <p>
-    Une demande de réinitialisation du mot de passe a été faite. Veuillez cliquer sur le lien ci-dessous pour changer votre mot de passe.
+    <span>Cordialement,</span>
 </p>
-
 <p>
-    <a th:href="@{|${baseUrl}/#/reset/key=${user.resetKey}|}" th:text="|${user.login}|">Réinitialisation</a>
-</p>
-
-<p>
-    <span th:text="#{email.reset.text2}">Cordialement,</span>
-    <br/>
-    <em th:text="#{email.signature}">Jocelyn N'TAKPE</em>
+    <em>L'équipe SuiviFactu.</em>
 </p>
 </body>
 </html>

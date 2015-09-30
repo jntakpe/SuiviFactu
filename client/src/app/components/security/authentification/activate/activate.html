@@ -1,0 +1,26 @@
+<div layout="row" flex layout-padding layout-fill layout-align="center center">
+    <div flex="40" flex-lg="50" flex-md="70" flex-sm="100">
+        <md-card>
+            <md-toolbar>
+                <div class="padding-20 text-center">
+                    <div><img src="assets/images/sopra-steria.png" alt="Logo application"></div>
+                    <h1 class="md-headline">Activation du compte</h1>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding" ng-switch="act.status">
+                <p ng-switch-when="activated" class="margin-top-20 margin-bottom-20">Votre compte Suivi facturation est à présent activé</p>
+
+                <p ng-switch-when="error" class="margin-top-20 margin-bottom-20">
+                    Votre compte Suivi facturation n'a pas pu être activé. Il est possible que votre compte soit déjà activé.
+                </p>
+
+                <p ng-switch-when="pending" layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </p>
+                <md-button class="md-primary auth-action full-width" ui-sref="auth.login">
+                    Se connecter
+                </md-button>
+            </md-content>
+        </md-card>
+    </div>
+</div>

@@ -10,7 +10,7 @@ export default class UserService {
     }
 
     forgotPassword(email) {
-        return this.baseUsers.customGET('forgotpwd', {email: email});
+        return this.baseUsers.customGET('forgotpwd', {email});
     }
 
     isNameAvailable(name, id) {
@@ -23,5 +23,9 @@ export default class UserService {
 
     resetPassword(email) {
         return this.baseUsers.customPOST({email}, 'resetPassword');
+    }
+
+    activate(activationKey) {
+        return this.baseUsers.customPOST({}, 'activate/' + activationKey);
     }
 }

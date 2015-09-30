@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -39,7 +40,6 @@ public class MailService {
     }
 
     private void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
-        LOGGER.debug("Envoi du mail {} à {}", subject, to);
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
@@ -53,19 +53,21 @@ public class MailService {
         }
     }
 
+    @Async
     public void sendActivationEmail(Utilisateur utilisateur, String baseUrl) {
         LOGGER.info("Envoi du mail d'activation à {}", utilisateur.getEmail());
         Context context = new Context();
-        context.setVariable("user", utilisateur);
+        context.setVariable("utilisateur", utilisateur);
         context.setVariable("baseUrl", baseUrl);
         String content = springTemplateEngine.process("account-activation", context);
         sendEmail(utilisateur.getEmail(), "Activation du compte Suivi de facturation", content, false, true);
     }
 
+    @Async
     public void sendPasswordResetMail(Utilisateur utilisateur, String baseUrl) {
         LOGGER.info("Envoi d'un nouveau de mot de passe à {}", utilisateur.getEmail());
         Context context = new Context();
-        context.setVariable("user", utilisateur);
+        context.setVariable("utilisateur", utilisateur);
         context.setVariable("baseUrl", baseUrl);
         String content = springTemplateEngine.process("reset-password", context);
         sendEmail(utilisateur.getEmail(), "Réinitialisation du mot de passe Suivi de facturation", content, false, true);

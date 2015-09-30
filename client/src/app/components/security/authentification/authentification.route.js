@@ -1,6 +1,7 @@
 import LoginController from './login/login.controller.js';
 import SignupController from './signup/signup.controller.js';
 import ForgotController from './forgot/forgot.controller.js';
+import ActivateController from './activate/activate.controller.js';
 
 export default function authStateConfig($stateProvider) {
     'ngInject';
@@ -23,6 +24,11 @@ export default function authStateConfig($stateProvider) {
         templateUrl: 'app/components/security/authentification/forgot/forgot.html',
         controller: ForgotController,
         controllerAs: 'fgt'
+    }).state('auth.activate', {
+        url: '/activate?key',
+        templateUrl: 'app/components/security/authentification/activate/activate.html',
+        controller: ActivateController,
+        controllerAs: 'act'
     });
 
 }

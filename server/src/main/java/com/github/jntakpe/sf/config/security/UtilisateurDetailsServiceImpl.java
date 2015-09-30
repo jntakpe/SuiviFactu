@@ -30,9 +30,8 @@ public class UtilisateurDetailsServiceImpl implements UserDetailsService {
         this.utilisateurService = utilisateurService;
     }
 
-    private static SpringSecurityUser mapUserDetails(Utilisateur utilisateur) {
-        List<GrantedAuthority> auths = mapAuthorities(utilisateur);
-        return new SpringSecurityUser(utilisateur.getId(), utilisateur.getEmail(), utilisateur.getPassword(), auths);
+    private static SpringSecurityUser mapUserDetails(Utilisateur user) {
+        return new SpringSecurityUser(user.getId(), user.getEmail(), user.getPassword(), user.isActivated(), mapAuthorities(user));
     }
 
     private static List<GrantedAuthority> mapAuthorities(Utilisateur utilisateur) {
@@ -47,7 +46,6 @@ public class UtilisateurDetailsServiceImpl implements UserDetailsService {
     @Override
     public SpringSecurityUser loadUserByUsername(String email) {
         LOGGER.debug("Authentification de l'utilisateur avec l'addresse mail {}", email);
-        Utilisateur user = utilisateurService.findByEmailWithAuthorities(email);
-        return mapUserDetails(user);
+        return mapUserDetails(utilisateurService.findByEmailWithAuthorities(email));
     }
 }
