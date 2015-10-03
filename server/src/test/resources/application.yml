@@ -1,0 +1,49 @@
+app:
+  name: SuiviFactu
+  description: Suivi des facturations
+  version: 0.1.0
+  termsOfServiceUrl: http://www.github.com/jntakpe/SuiviFactu
+  contact: j.ntakpe@gmail.com
+  license: MIT
+  licenseUrl: http://opensource.org/licenses/MIT
+management:
+  context-path: /manage
+  security:
+    enabled: false
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: h2
+    openInView: false
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+      naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+  thymeleaf:
+      prefix: classpath:/mails/
+authentication:
+  oauth:
+    clientId: suivifactu
+    secret: suivifactusupersecuresecret
+    tokenValidityInSeconds: 1800
+async:
+  corePoolSize: 2
+  maxPoolSize: 50
+  queueCapacity: 10000
+datasource:
+  url: jdbc:h2:mem:testsf;DB_CLOSE_DELAY=-1
+  username:
+  password:
+  dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+server:
+  contextPath: /suivifactu
+mail:
+  host: smtp.gmail.com
+  port: 587
+  from: suivifactu@gmail.com
+  username: suivifactu@gmail.com
+  password: suivifactusupersecurepassword
+  protocol: smtp
+  tls: true
+  auth: true

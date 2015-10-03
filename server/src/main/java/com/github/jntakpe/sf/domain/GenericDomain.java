@@ -8,7 +8,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -25,16 +24,14 @@ public abstract class GenericDomain implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @NotNull
     @CreatedBy
     @JsonIgnore
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private String createdBy;
 
-    @NotNull
     @CreatedDate
     @JsonIgnore
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createdDate = LocalDateTime.now();
 
     @JsonIgnore
