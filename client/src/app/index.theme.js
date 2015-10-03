@@ -19,26 +19,12 @@ export default function themingConfig($mdThemingProvider) {
         'contrastDefaultColor': 'dark'
     });
 
-    $mdThemingProvider.definePalette('black', {
-        '50': 'e1e1e1',
-        '100': 'b6b6b6',
-        '200': '8c8c8c',
-        '300': '646464',
-        '400': '4d4d4d',
-        '500': '3a3a3a',
-        '600': '2f2f2f',
-        '700': '232323',
-        '800': '1a1a1a',
-        '900': '121212',
-        'A100': 'ffffff',
-        'A200': 'ffffff',
-        'A400': 'ffffff',
-        'A700': 'ffffff',
+    $mdThemingProvider.definePalette('light-cyan', $mdThemingProvider.extendPalette('cyan', {
         'contrastDefaultColor': 'light'
-    });
+    }));
 
     $mdThemingProvider.theme('cyan')
-        .primaryPalette('cyan')
+        .primaryPalette('light-cyan')
         .accentPalette('amber')
         .warnPalette('deep-orange');
 
