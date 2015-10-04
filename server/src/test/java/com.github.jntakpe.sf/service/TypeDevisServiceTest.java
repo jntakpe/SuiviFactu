@@ -52,11 +52,13 @@ public class TypeDevisServiceTest extends AbstractServiceTestContext {
 
     @Test
     public void testSave_shouldEditTypeDevis() {
-        Optional<TypeDevis> optPresta = typeDevisRepository.findByNom(PRESTATION);
-        assertThat(optPresta).isPresent();
-        TypeDevis presta = optPresta.get();
+        Optional<TypeDevis> typeDevis = typeDevisRepository.findByNom(PRESTATION);
+        assertThat(typeDevis).isPresent();
         String prestaNewName = "Presta";
-        presta.setNom(prestaNewName);
+        TypeDevis detachedTypeDevis = new TypeDevis();
+        detachedTypeDevis.setId(typeDevis.get().getId());
+        detachedTypeDevis.setNom(prestaNewName);
+        typeDevisService.save(detachedTypeDevis);
         assertThat(typeDevisRepository.findByNom(prestaNewName)).isPresent();
     }
 

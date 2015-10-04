@@ -49,11 +49,13 @@ public class CDSServiceTest extends AbstractServiceTestContext {
 
     @Test
     public void testSave_shouldEditCDS() {
-        Optional<CentreService> optNtic3 = cdsRepository.findByNom(NTIC_3);
-        assertThat(optNtic3).isPresent();
-        CentreService ntic3 = optNtic3.get();
+        Optional<CentreService> cds = cdsRepository.findByNom(NTIC_3);
+        assertThat(cds).isPresent();
+        CentreService detachedCDS = new CentreService();
+        detachedCDS.setId(cds.get().getId());
         String newName = "ntic4";
-        ntic3.setNom(newName);
+        detachedCDS.setNom(newName);
+        cdsService.save(detachedCDS);
         assertThat(cdsRepository.findByNom(newName)).isPresent();
     }
 

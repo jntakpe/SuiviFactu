@@ -56,9 +56,11 @@ public class ClientServiceTest extends AbstractServiceTestContext {
     public void testSave_shouldEditClient() {
         Optional<Client> center = clientRepository.findByNom(CENTER);
         assertThat(center).isPresent();
-        Client test = center.get();
         String newName = "TEST";
-        test.setNom(newName);
+        Client detachedClient = new Client();
+        detachedClient.setId(center.get().getId());
+        detachedClient.setNom(newName);
+        clientService.save(detachedClient);
         assertThat(clientRepository.findByNom(newName)).isPresent();
     }
 
