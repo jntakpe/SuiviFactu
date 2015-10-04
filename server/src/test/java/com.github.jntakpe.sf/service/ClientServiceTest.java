@@ -42,16 +42,6 @@ public class ClientServiceTest extends AbstractServiceTestContext {
         );
     }
 
-    @Override
-    protected String getTable() {
-        return CLIENT_TABLE;
-    }
-
-    @Override
-    protected Operation operations() {
-        return bcOperations();
-    }
-
     @Test
     public void testSave_shouldCreateNewClient() {
         Client dipro = new Client();
@@ -70,5 +60,15 @@ public class ClientServiceTest extends AbstractServiceTestContext {
         String newName = "TEST";
         test.setNom(newName);
         assertThat(clientRepository.findByNom(newName)).isPresent();
+    }
+
+    @Override
+    protected String getTable() {
+        return CLIENT_TABLE;
+    }
+
+    @Override
+    protected Operation operations() {
+        return bcOperations();
     }
 }
