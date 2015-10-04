@@ -35,8 +35,14 @@ public class CDSServiceTest extends AbstractServiceTestContext {
                 Operations.insertInto(CDS_TABLE)
                         .columns("nom")
                         .values(NTIC_3)
+                        .values("Toulouse")
                         .build()
         );
+    }
+
+    @Test
+    public void testFindAll_shouldFind() {
+        assertThat(cdsService.findAll()).isNotEmpty().hasSize(2).contains(getDetachedNtic3());
     }
 
     @Test
@@ -49,10 +55,7 @@ public class CDSServiceTest extends AbstractServiceTestContext {
 
     @Test
     public void testSave_shouldEditCDS() {
-        Optional<CentreService> cds = cdsRepository.findByNom(NTIC_3);
-        assertThat(cds).isPresent();
-        CentreService detachedCDS = new CentreService();
-        detachedCDS.setId(cds.get().getId());
+        CentreService detachedCDS = getDetachedNtic3();
         String newName = "ntic4";
         detachedCDS.setNom(newName);
         cdsService.save(detachedCDS);
@@ -67,5 +70,14 @@ public class CDSServiceTest extends AbstractServiceTestContext {
     @Override
     protected Operation operations() {
         return cdsOperations();
+    }
+
+    private CentreService getDetachedNtic3() {
+        Optional<CentreService> cds = cdsRepository.findByNom(NTIC_3);
+        assertThat(cds).isPresent();
+        CentreService detachedCDS = new CentreService();
+        detachedCDS.setId(cds.get().getId());
+        detachedCDS.setNom(cds.get().getNom());
+        return detachedCDS;
     }
 }

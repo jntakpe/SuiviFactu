@@ -43,6 +43,11 @@ public class ClientServiceTest extends AbstractServiceTestContext {
     }
 
     @Test
+    public void testFindAll_shouldFind() {
+        assertThat(clientService.findAll()).isNotEmpty().hasSize(2).contains(getDetachedClient());
+    }
+
+    @Test
     public void testSave_shouldCreateNewClient() {
         Client dipro = new Client();
         String clientName = "DIPRO";
@@ -54,11 +59,8 @@ public class ClientServiceTest extends AbstractServiceTestContext {
 
     @Test
     public void testSave_shouldEditClient() {
-        Optional<Client> center = clientRepository.findByNom(CENTER);
-        assertThat(center).isPresent();
+        Client detachedClient = getDetachedClient();
         String newName = "TEST";
-        Client detachedClient = new Client();
-        detachedClient.setId(center.get().getId());
         detachedClient.setNom(newName);
         clientService.save(detachedClient);
         assertThat(clientRepository.findByNom(newName)).isPresent();
@@ -72,5 +74,14 @@ public class ClientServiceTest extends AbstractServiceTestContext {
     @Override
     protected Operation operations() {
         return bcOperations();
+    }
+
+    private Client getDetachedClient() {
+        Optional<Client> center = clientRepository.findByNom(CENTER);
+        assertThat(center).isPresent();
+        Client detachedClient = new Client();
+        detachedClient.setId(center.get().getId());
+        detachedClient.setNom(center.get().getNom());
+        return detachedClient;
     }
 }

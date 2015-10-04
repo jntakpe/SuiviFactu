@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Service associé à l'entité {@link com.github.jntakpe.sf.domain.StatutBC}
  *
@@ -23,6 +25,12 @@ public class StatutBCService {
     @Autowired
     public StatutBCService(StatutBCRepository statutBCRepository) {
         this.statutBCRepository = statutBCRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public List<StatutBC> findAll() {
+        LOGGER.debug("Recherche la liste des status de commande");
+        return statutBCRepository.findAll();
     }
 
     @Transactional

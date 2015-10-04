@@ -41,6 +41,11 @@ public class TypeDevisServiceTest extends AbstractServiceTestContext {
     }
 
     @Test
+    public void testFindAll_shouldFind() {
+        assertThat(typeDevisService.findAll()).isNotEmpty().hasSize(2).contains(getDetachedTypeDevis());
+    }
+
+    @Test
     public void testSave_shouldCreateNewTypeDevis() {
         TypeDevis forfait = new TypeDevis();
         String forfaitName = "forfait";
@@ -52,14 +57,20 @@ public class TypeDevisServiceTest extends AbstractServiceTestContext {
 
     @Test
     public void testSave_shouldEditTypeDevis() {
-        Optional<TypeDevis> typeDevis = typeDevisRepository.findByNom(PRESTATION);
-        assertThat(typeDevis).isPresent();
+        TypeDevis detachedTypeDevis = getDetachedTypeDevis();
         String prestaNewName = "Presta";
-        TypeDevis detachedTypeDevis = new TypeDevis();
-        detachedTypeDevis.setId(typeDevis.get().getId());
         detachedTypeDevis.setNom(prestaNewName);
         typeDevisService.save(detachedTypeDevis);
         assertThat(typeDevisRepository.findByNom(prestaNewName)).isPresent();
+    }
+
+    private TypeDevis getDetachedTypeDevis() {
+        Optional<TypeDevis> typeDevis = typeDevisRepository.findByNom(PRESTATION);
+        assertThat(typeDevis).isPresent();
+        TypeDevis detachedTypeDevis = new TypeDevis();
+        detachedTypeDevis.setId(typeDevis.get().getId());
+        detachedTypeDevis.setNom(typeDevis.get().getNom());
+        return detachedTypeDevis;
     }
 
     @Override

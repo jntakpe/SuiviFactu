@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Services associés à l'entité {@link com.github.jntakpe.sf.domain.CentreService}
  *
@@ -25,11 +27,15 @@ public class CDSService {
         this.cdsRepository = cdsRepository;
     }
 
+    @Transactional(readOnly = true)
+    public List<CentreService> findAll() {
+        LOGGER.debug("Recherche la liste des centres de services");
+        return cdsRepository.findAll();
+    }
+
     @Transactional
     public CentreService save(CentreService centreService) {
         LOGGER.info("Enregistrement du centre de service {}", centreService);
         return cdsRepository.save(centreService);
     }
-
-
 }

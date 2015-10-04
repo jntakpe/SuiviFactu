@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Service associé à l'entité {@link Client}
  *
@@ -23,6 +25,12 @@ public class ClientService {
     @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Client> findAll() {
+        LOGGER.debug("Recherche la liste des clients");
+        return clientRepository.findAll();
     }
 
     @Transactional

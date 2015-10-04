@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Services associés à l'entité {@link com.github.jntakpe.sf.domain.TypeDevis}
  *
@@ -23,6 +25,12 @@ public class TypeDevisService {
     @Autowired
     public TypeDevisService(TypeDevisRepository typeDevisRepository) {
         this.typeDevisRepository = typeDevisRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public List<TypeDevis> findAll() {
+        LOGGER.debug("Recherche la liste des types de devis");
+        return typeDevisRepository.findAll();
     }
 
     @Transactional

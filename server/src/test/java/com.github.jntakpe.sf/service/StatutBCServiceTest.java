@@ -41,6 +41,11 @@ public class StatutBCServiceTest extends AbstractServiceTestContext {
     }
 
     @Test
+    public void testFindAll_shouldFind() {
+        assertThat(statutBCService.findAll()).isNotEmpty().hasSize(2).contains(getDetachedStatutBC());
+    }
+
+    @Test
     public void testSave_shouldCreateNewStatutBC() {
         StatutBC statutBC = new StatutBC();
         String newName = "Supprimé";
@@ -52,11 +57,8 @@ public class StatutBCServiceTest extends AbstractServiceTestContext {
 
     @Test
     public void testSave_shouldEditStatutBC() {
-        Optional<StatutBC> statutBC = statutBCRepository.findByNom(REFUSE);
-        assertThat(statutBC).isPresent();
+        StatutBC detachedStatutBC = getDetachedStatutBC();
         String newName = "A facturer";
-        StatutBC detachedStatutBC = new StatutBC();
-        detachedStatutBC.setId(statutBC.get().getId());
         detachedStatutBC.setNom(newName);
         statutBCService.save(detachedStatutBC);
         assertThat(statutBCRepository.findByNom(newName)).isPresent();
@@ -70,5 +72,14 @@ public class StatutBCServiceTest extends AbstractServiceTestContext {
     @Override
     protected Operation operations() {
         return statutBCOperations();
+    }
+
+    private StatutBC getDetachedStatutBC() {
+        Optional<StatutBC> statutBC = statutBCRepository.findByNom(REFUSE);
+        assertThat(statutBC).isPresent();
+        StatutBC detachedStatutBC = new StatutBC();
+        detachedStatutBC.setId(statutBC.get().getId());
+        detachedStatutBC.setNom(statutBC.get().getNom());
+        return detachedStatutBC;
     }
 }
