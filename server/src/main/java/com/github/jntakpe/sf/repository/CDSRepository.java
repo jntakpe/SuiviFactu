@@ -7,6 +7,6 @@ import com.github.jntakpe.sf.domain.CentreService;
  *
  * @author jntakpe
  */
-public interface CentreServiceRepository extends GenericRepository<CentreService> {
+public interface CDSRepository extends NamedRepository<CentreService> {
 
 }

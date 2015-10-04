@@ -7,6 +7,6 @@ import com.github.jntakpe.sf.domain.StatutBC;
  *
  * @author jntakpe
  */
-public interface StatutBCRepository extends GenericRepository<StatutBC> {
+public interface StatutBCRepository extends NamedRepository<StatutBC> {
 
 }

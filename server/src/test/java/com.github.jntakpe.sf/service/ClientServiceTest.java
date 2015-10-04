@@ -55,9 +55,11 @@ public class ClientServiceTest extends AbstractServiceTestContext {
     @Test
     public void testSave_shouldCreateNewClient() {
         Client dipro = new Client();
-        dipro.setNom("DIPRO");
+        String clientName = "DIPRO";
+        dipro.setNom(clientName);
         clientService.save(dipro);
         assertThat(countRowsInTable(CLIENT_TABLE)).isEqualTo(initCount + 1);
+        assertThat(clientRepository.findByNom(clientName)).isPresent();
     }
 
     @Test

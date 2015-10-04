@@ -7,6 +7,6 @@ import com.github.jntakpe.sf.domain.TypeDevis;
  *
  * @author jntakpe
  */
-public interface TypeDevisRepository extends GenericRepository<TypeDevis> {
+public interface TypeDevisRepository extends NamedRepository<TypeDevis> {
 
 }
