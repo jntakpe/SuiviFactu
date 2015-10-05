@@ -12,4 +12,7 @@ public final class UrisConstants {
     public static final String UTILISATEURS = API + "/utilisateurs";
 
     public static final String BON_COMMANDE = API + "/bonscommande";
+
+    public static final String CDS = API + "/cds";
+
 }

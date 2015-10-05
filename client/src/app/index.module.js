@@ -6,9 +6,10 @@ import runBlock from './index.run.js';
 import coreModule from './components/core/core.module.js';
 import securityModule from './components/security/security.module.js';
 import layoutModule from './components/layout/layout.module.js';
+import authModule from './authentification/authentification.module.js';
 import homeRoute from './home/home.route.js';
 
-angular.module('sf', [coreModule.name, securityModule.name, layoutModule.name])
+angular.module('sf', [coreModule.name, securityModule.name, layoutModule.name, authModule.name])
     .constant('toastr', toastr)
     .constant('moment', moment)
     .constant('baseUrl', '/suivifactu')

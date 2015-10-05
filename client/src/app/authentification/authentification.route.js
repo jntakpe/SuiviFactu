@@ -8,25 +8,25 @@ export default function authStateConfig($stateProvider) {
 
     $stateProvider.state('auth', {
         abstract: true,
-        templateUrl: 'app/components/security/authentification/authentification.html'
+        templateUrl: 'app/authentification/authentification.html'
     }).state('auth.login', {
         url: '/login?logout&register&forgot',
-        templateUrl: 'app/components/security/authentification/login/login.html',
+        templateUrl: 'app/authentification/login/login.html',
         controller: LoginController,
         controllerAs: 'lgn'
     }).state('auth.signup', {
         url: '/register',
-        templateUrl: 'app/components/security/authentification/signup/signup.html',
+        templateUrl: 'app/authentification/signup/signup.html',
         controller: SignupController,
         controllerAs: 'sup'
     }).state('auth.forgotpwd', {
         url: '/forgotpwd',
-        templateUrl: 'app/components/security/authentification/forgot/forgot.html',
+        templateUrl: 'app/authentification/forgot/forgot.html',
         controller: ForgotController,
         controllerAs: 'fgt'
     }).state('auth.activate', {
         url: '/activate?key',
-        templateUrl: 'app/components/security/authentification/activate/activate.html',
+        templateUrl: 'app/authentification/activate/activate.html',
         controller: ActivateController,
         controllerAs: 'act'
     });

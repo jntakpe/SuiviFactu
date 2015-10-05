@@ -1,14 +1,11 @@
-import authModule from './authentification/authentification.module.js';
 import AuthService from './services/auth.service.js';
 import OAuth2Service from './services/oauth2.service.js';
 import PrincipalService from './services/principal.service.js';
 import authInterceptor from './interceptors/auth.interceptor.js';
 import authExpiredInterceptor from './interceptors/auth-expired.interceptor.js';
-import authStateConfig from './authentification/authentification.route.js';
 
 export default angular
-    .module('sf.security', [authModule.name])
-    .config(authStateConfig)
+    .module('sf.security', [])
     .config(configInterceptors)
     .config(configLocalStorage)
     .run(run)
