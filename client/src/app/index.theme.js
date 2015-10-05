@@ -20,8 +20,11 @@ export default function themingConfig($mdThemingProvider) {
     });
 
     $mdThemingProvider.definePalette('light-cyan', $mdThemingProvider.extendPalette('cyan', {
-        'contrastDefaultColor': 'light'
+        'contrastDefaultColor': 'light',
+        'contrastLightColors': '500 700 800 900',
+        'contrastStrongLightColors': '500 700 800 900'
     }));
+
 
     $mdThemingProvider.theme('cyan')
         .primaryPalette('light-cyan')
